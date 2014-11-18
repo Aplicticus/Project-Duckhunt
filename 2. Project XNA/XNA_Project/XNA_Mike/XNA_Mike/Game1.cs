@@ -19,7 +19,7 @@ namespace XNA_Mike
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-//comment test
+//comment test test
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
