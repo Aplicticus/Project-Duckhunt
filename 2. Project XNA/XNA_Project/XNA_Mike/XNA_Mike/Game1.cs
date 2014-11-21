@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -18,6 +20,8 @@ namespace XNA_Mike
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D background;
+        SoundEffect bgEffect;
 
 //comment test test
         public Game1()
@@ -25,6 +29,7 @@ namespace XNA_Mike
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -48,6 +53,11 @@ namespace XNA_Mike
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            background = Content.Load<Texture2D>(@"images/download");
+            bgEffect = Content.Load<SoundEffect>(@"music/test");
+            SoundEffectInstance instance = bgEffect.CreateInstance();
+            instance.IsLooped = true;
+            bgEffect.Play(0.1f, 0.0f, 0.0f);
             // TODO: use this.Content to load your game content here
         }
 
@@ -82,8 +92,11 @@ namespace XNA_Mike
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            //GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
+            spriteBatch.Draw(background, new Rectangle(0,0,Window.ClientBounds.Width,Window.ClientBounds.Height), Color.White);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
