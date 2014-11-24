@@ -18,9 +18,9 @@ namespace XNA_Mathijs
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Vector2 mPosition = new Vector2(0, 0);
+        Vector2 mPosition = new Vector2(100f, 100f);
         Texture2D mSpriteTexture;
-        SoundEffect mSoundEffect;
+        Song mSong;
 
         public Game1()
         {
@@ -52,7 +52,7 @@ namespace XNA_Mathijs
 
             // TODO: use this.Content to load your game content here
             mSpriteTexture = this.Content.Load<Texture2D>("Isaac_form1");
-            mSoundEffect = this.Content.Load<SoundEffect>("Isaac_sounds");
+            mSong = this.Content.Load<Song>("Isaac_sound");
         }
 
         /// <summary>
@@ -87,9 +87,12 @@ namespace XNA_Mathijs
                 {
                     PixelCheck(); // Check if individual pixel is non Alpha
                     if (PixelDetected == true)
-                        mSoundEffect.Play();
+                        MediaPlayer.Play(mSong);
                 }
-            } 
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                MediaPlayer.Play(mSong);
 
             base.Update(gameTime);
         }
