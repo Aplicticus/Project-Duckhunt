@@ -10,10 +10,11 @@ namespace XNA_MainProject
         /// </summary>
         static void Main(string[] args)
         {
-            using (Game1 game = new Game1())
+            using (StateSwitcher game = new StateSwitcher())
             {
                 game.Run();
             }
+            
         }
     }
 #endif
