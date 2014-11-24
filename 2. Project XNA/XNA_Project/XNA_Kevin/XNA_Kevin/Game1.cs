@@ -126,10 +126,6 @@ namespace XNA_Kevin
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-            //if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            //{
-            //    MediaPlayer.Play(songs);
-            //}
             GetMouseStates();
             base.Update(gameTime);
         }
