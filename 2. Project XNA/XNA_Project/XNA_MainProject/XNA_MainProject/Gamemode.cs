@@ -14,8 +14,10 @@ namespace XNA_MainProject
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Gamemode : Microsoft.Xna.Framework.Game
+    public class Gamemode : StateSwitcher
     {
+        public Color backgroundColor = Color.Beige;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -66,10 +68,6 @@ namespace XNA_MainProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -81,7 +79,7 @@ namespace XNA_MainProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Beige);
+            GraphicsDevice.Clear(backgroundColor);
 
             // TODO: Add your drawing code here
 

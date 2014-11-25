@@ -11,12 +11,28 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNA_MainProject
 {
-    enum ScreenState { MainMenu, Gamemode}
-    class StateSwitcher : Microsoft.Xna.Framework.Game
+    public enum ScreenState { MainMenu, Gamemode}
+    public class StateSwitcher : Game
     {
+        //This value is the starting state.
+        ScreenState currentState = ScreenState.MainMenu;
+
+        Color backgroundColor = Color.Black;
+
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+
+        public StateSwitcher()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+        }
 
         /// <summary>
-        /// This starting class exists to switch between states/screens
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
         {
@@ -31,6 +47,10 @@ namespace XNA_MainProject
         /// </summary>
         protected override void LoadContent()
         {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -47,36 +67,35 @@ namespace XNA_MainProject
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// 
-
-        //Indicate starting state here
-        ScreenState CurrentState = ScreenState.MainMenu;
-        protected override void Update(GameTime gametime)
+        protected override void Update(GameTime gameTime)
         {
-            switch (CurrentState)
+            // TODO: Add your update logic here
+            switch(currentState)
             {
                 case ScreenState.MainMenu:
-                    {
-                        using(MainMenu mainMenu = new MainMenu())
-                        {
-                            mainMenu.Run();
-                        }
-                        break;
-                    }
+                    MainMenu mainMenu = new MainMenu();
+                    backgroundColor = mainMenu.backgroundColor;
+                    break;
                 case ScreenState.Gamemode:
-                    {
-                        break;
-                    }
+                    Gamemode gamemode = new Gamemode();
+                    backgroundColor = gamemode.backgroundColor;
+                    break;                    
             }
-            base.Update(gametime);
+
+            base.Update(gameTime);
         }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-        }
+            GraphicsDevice.Clear(backgroundColor);
 
+            // TODO: Add your drawing code here
+
+            base.Draw(gameTime);
+        }
     }
 }
