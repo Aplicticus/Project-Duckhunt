@@ -96,8 +96,8 @@ namespace XNA_Kevin
         protected override void UnloadContent()
         {
             UnloadSongs();
-            UnloadBackground();
-            UnLoadButtonBackgrounds();
+            //UnloadBackground();
+            //UnLoadButtonBackgrounds();
         }
 
         private void UnloadSongs()
@@ -127,6 +127,21 @@ namespace XNA_Kevin
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             GetMouseStates();
+
+            MouseState mouseState;
+
+            mouseState = Mouse.GetState();
+            
+            if  (mouseState.X > play.GetPositionBeginX() && mouseState.Y > play.GetPositionBeginY() &&
+                 mouseState.X < play.GetPositionEndX() && (mouseState.Y < play.getPositionEndY())
+                ) 
+                {
+                    btnPlay = Content.Load<Texture2D>(@"images\background2");
+                    songs = Content.Load<Song>(@"songs\song2");
+                    DrawOnHover();
+                    PlayOnHover();                 
+                }
+
             base.Update(gameTime);
         }
 
@@ -166,7 +181,7 @@ namespace XNA_Kevin
                (Mouse.GetState().X < back.GetPositionEndX()) && (Mouse.GetState().Y < back.getPositionEndY()))
             {
                 MediaPlayer.Play(songs);
-            }            
+            }                
         }
        
 
@@ -196,10 +211,18 @@ namespace XNA_Kevin
             spriteBatch.Draw(btnQuit, quit.GetButton(325, 265, 150, 50), Color.White);
             spriteBatch.Draw(btnBack, back.GetButton(325, 320, 150, 50), Color.White);
             spriteBatch.End();     
-
             
-
             base.Draw(gameTime);
+        }
+        private void DrawOnHover()
+        {
+            spriteBatch.Begin();            
+            spriteBatch.Draw(btnPlay, play.GetButton(325, 100, 150, 50), Color.LightBlue);
+            spriteBatch.End();
+        }
+        private void PlayOnHover()
+        {
+            MediaPlayer.Play(songs);
         }
     }
 }
