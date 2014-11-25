@@ -126,15 +126,11 @@ namespace XNA_MainProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-<<<<<<< HEAD
-            // TODO: Add your update logic here
-=======
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
             GetMouseStates();
->>>>>>> origin/master
 
             base.Update(gameTime);
         }
@@ -185,15 +181,11 @@ namespace XNA_MainProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-<<<<<<< HEAD
-            GraphicsDevice.Clear(backgroundColor);
-=======
             
             // Draw Background Main Menu
             spriteBatch.Begin();
             spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
             spriteBatch.End();
->>>>>>> origin/master
 
             // Draw Main Menu
             spriteBatch.Begin();
