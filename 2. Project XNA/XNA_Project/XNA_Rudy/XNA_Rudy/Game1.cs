@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using WiimoteLib;
 
 namespace XNA_Rudy
 {
@@ -18,6 +19,7 @@ namespace XNA_Rudy
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Controller controller;
 
         public Game1()
         {
@@ -36,6 +38,7 @@ namespace XNA_Rudy
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            controller = new Controller();
         }
 
         /// <summary>
@@ -67,8 +70,9 @@ namespace XNA_Rudy
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
+
 
             // TODO: Add your update logic here
 
@@ -82,6 +86,14 @@ namespace XNA_Rudy
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            /*SpriteBatch spriteBatch;
+            spriteBatch.Begin();
+            SpriteFont font;
+            Vector2 v1 = new Vector2(10,10);
+
+
+            spriteBatch.DrawString(font, controller.SendMessage, v1, Color.DarkOliveGreen);
+            */
 
             // TODO: Add your drawing code here
 

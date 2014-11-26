@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace XNA_Mathijs
+namespace WiimoteTestProject
 {
     /// <summary>
     /// This is the main type for your game
@@ -18,19 +18,12 @@ namespace XNA_Mathijs
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        //Screens
-        MainMenu mainMenu;
-        Gamemode gamemode;
-        Screen currentScreen;
+        Controller controller;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            this.graphics.PreferredBackBufferWidth = 1280;
-            this.graphics.PreferredBackBufferHeight = 720;
         }
 
         /// <summary>
@@ -44,6 +37,7 @@ namespace XNA_Mathijs
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            controller = new Controller();
         }
 
         /// <summary>
@@ -56,8 +50,6 @@ namespace XNA_Mathijs
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            mainMenu = new MainMenu(Content, MainMenuEvent);
-            gamemode = new Gamemode(Content, GamemodeEvent);
         }
 
         /// <summary>
@@ -76,8 +68,12 @@ namespace XNA_Mathijs
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Allows the game to exit
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                this.Exit();
+
+
             // TODO: Add your update logic here
-            currentScreen.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -89,21 +85,18 @@ namespace XNA_Mathijs
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            /*SpriteBatch spriteBatch;
+            spriteBatch.Begin();
+            SpriteFont font;
+            Vector2 v1 = new Vector2(10,10);
+
+
+            spriteBatch.DrawString(font, controller.SendMessage, v1, Color.DarkOliveGreen);
+            */
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            currentScreen.Draw(spriteBatch);
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }
-        public void MainMenuEvent(object obj, EventArgs e)
-        {
-            currentScreen = mainMenu;
-        }
-        public void GamemodeEvent(object obj, EventArgs e)
-        {
-            currentScreen = gamemode;
-        }
-    }    
+    }
 }

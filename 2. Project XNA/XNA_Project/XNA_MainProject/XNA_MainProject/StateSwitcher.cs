@@ -75,6 +75,7 @@ namespace XNA_MainProject
                 case ScreenState.MainMenu:
                     MainMenu mainMenu = new MainMenu();
                     backgroundColor = mainMenu.backgroundColor;
+                    mainMenu.Run();
                     break;
                 case ScreenState.Gamemode:
                     Gamemode gamemode = new Gamemode();
