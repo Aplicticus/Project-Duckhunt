@@ -17,7 +17,7 @@ namespace XNA_Kevin
     public class Game1 : Microsoft.Xna.Framework.Game
     {       
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;        
+        SpriteBatch spriteBatch;
         Song songs;
         Texture2D background;
 
@@ -26,7 +26,7 @@ namespace XNA_Kevin
         Texture2D btnOptions;
         Texture2D btnHighscore;
         Texture2D btnQuit;
-        Texture2D btnBack; 
+        Texture2D btnBack;
        
         //Buttons
         Button play = new Button();
@@ -34,6 +34,9 @@ namespace XNA_Kevin
         Button highscore = new Button();
         Button quit = new Button();
         Button back = new Button();
+
+        Button ok = new Button();
+        Button cancel = new Button();
 
 
         public Game1()
@@ -173,7 +176,10 @@ namespace XNA_Kevin
                (Mouse.GetState().X > quit.GetPositionBeginX()) && (Mouse.GetState().Y > quit.GetPositionBeginY()) &&
                (Mouse.GetState().X < quit.GetPositionEndX()) && (Mouse.GetState().Y < quit.getPositionEndY()))
             {
-                MediaPlayer.Play(songs);
+                btnQuit = Content.Load<Texture2D>(@"images\background2");                
+                DrawQuit();
+
+
             }
             else if
                (Mouse.GetState().LeftButton == ButtonState.Pressed &&
@@ -223,6 +229,13 @@ namespace XNA_Kevin
         private void PlayOnHover()
         {
             MediaPlayer.Play(songs);
+        }
+
+        private void DrawQuit()
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(btnQuit, quit.GetButton(325, 265, 150, 50), Color.LightBlue);
+            spriteBatch.End();
         }
     }
 }
