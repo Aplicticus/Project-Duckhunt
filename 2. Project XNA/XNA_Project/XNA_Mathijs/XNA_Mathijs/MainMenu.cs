@@ -15,7 +15,7 @@ namespace XNA_Mathijs
 {
     class MainMenu : Screen
     {
-        KeyboardState oldState;
+        KeyboardState oldState = new KeyboardState(Keys.Space);
 
         Texture2D Background;
 
