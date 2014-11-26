@@ -58,6 +58,9 @@ namespace XNA_Mathijs
             // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(Content, MainMenuEvent);
             gamemode = new Gamemode(Content, GamemodeEvent);
+
+            // Starting Screen
+            currentScreen = mainMenu;
         }
 
         /// <summary>
@@ -99,11 +102,11 @@ namespace XNA_Mathijs
         }
         public void MainMenuEvent(object obj, EventArgs e)
         {
-            currentScreen = mainMenu;
+            currentScreen = gamemode;
         }
         public void GamemodeEvent(object obj, EventArgs e)
         {
-            currentScreen = gamemode;
+            currentScreen = mainMenu;
         }
     }    
 }
