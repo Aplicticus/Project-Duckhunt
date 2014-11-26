@@ -8,9 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using WiimoteLib;
 
-namespace XNA_Rudy
+namespace WiimoteTestProject
 {
     /// <summary>
     /// This is the main type for your game
