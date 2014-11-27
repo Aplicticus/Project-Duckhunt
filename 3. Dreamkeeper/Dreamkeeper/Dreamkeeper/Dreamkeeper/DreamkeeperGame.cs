@@ -19,10 +19,18 @@ namespace Dreamkeeper
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //Screens
+        MainMenu mainMenu;
+        Gamemode gamemode;
+        Screen currentScreen;
+
         public DreamkeeperGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            this.graphics.PreferredBackBufferWidth = 1280;
+            this.graphics.PreferredBackBufferHeight = 720;
         }
 
         /// <summary>
@@ -48,6 +56,11 @@ namespace Dreamkeeper
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            mainMenu = new MainMenu(Content, MainMenuEvent);
+            gamemode = new Gamemode(Content, GamemodeEvent);
+
+            // Starting Screen
+            currentScreen = mainMenu;
         }
 
         /// <summary>
@@ -66,12 +79,9 @@ namespace Dreamkeeper
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
             // TODO: Add your update logic here
 
+            currentScreen.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -84,8 +94,19 @@ namespace Dreamkeeper
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            currentScreen.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
-    }
+        public void MainMenuEvent(object obj, EventArgs e)
+        {
+            currentScreen = gamemode;
+        }
+        public void GamemodeEvent(object obj, EventArgs e)
+        {
+            currentScreen = mainMenu;
+        }
+    }    
 }
