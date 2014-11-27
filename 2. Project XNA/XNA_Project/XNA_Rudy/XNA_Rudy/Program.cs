@@ -1,6 +1,6 @@
 using System;
 
-namespace XNA_Rudy
+namespace XNA_Teun
 {
 #if WINDOWS || XBOX
     static class Program
