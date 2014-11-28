@@ -1,6 +1,6 @@
 using System;
 
-namespace XNA_Teun
+namespace TestLS
 {
 #if WINDOWS || XBOX
     static class Program
