@@ -19,10 +19,19 @@ namespace XNA_Tommy
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        MenuMain menuMain;
+        MenuGamemodeSelect menuGamemodeSelect;
+        MenuOptions menuOptions;
+        MenuGameplayOptions menuGameplayOptions;
+        MenuGraphicsOptions menuGraphicsOptions;
+        MenuSoundOptions menuSoundOptions;
+        Screen currentScreen;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -47,6 +56,14 @@ namespace XNA_Tommy
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            menuMain = new MenuMain(Content, MenuMainEvent, graphics);
+            menuGamemodeSelect = new MenuGamemodeSelect(Content, MenuGamemodeSelectEvent, graphics);
+            menuOptions = new MenuOptions(Content, MenuOptionsEvent, graphics);
+            menuGameplayOptions = new MenuGameplayOptions(Content, MenuGameplayOptionsEvent, graphics);
+            menuGraphicsOptions = new MenuGraphicsOptions(Content, MenuGraphicsOptionsEvent, graphics);
+            menuSoundOptions = new MenuSoundOptions(Content, MenuSoundOptionsEvent, graphics);
+            currentScreen = menuMain;
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -66,11 +83,11 @@ namespace XNA_Tommy
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            currentScreen.Update(gameTime);
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -83,9 +100,110 @@ namespace XNA_Tommy
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            currentScreen.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void MenuMainEvent(object sender, SwitchEventArgs e)
+        {
+            switch (e.current)
+            {
+                case 0:
+
+                    break;
+                case 1:
+                    currentScreen = menuGamemodeSelect;
+                    break;
+                case 2:
+                    currentScreen = menuOptions;
+                    break;
+                default:
+                    break;
+            }
+            System.Threading.Thread.Sleep(100);
+        }
+
+        public void MenuGamemodeSelectEvent(object sender, SwitchEventArgs e)
+        {
+            switch (e.current)
+            {
+                case 0:
+                    currentScreen = menuMain;
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                default:
+                    break;
+            }
+            System.Threading.Thread.Sleep(100);
+        }
+
+        public void MenuOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            switch (e.current)
+            {
+                case 0:
+                    currentScreen = menuMain;
+                    break;
+                case 1:
+                    currentScreen = menuGameplayOptions;
+                    break;
+                case 2:
+                    currentScreen = menuGraphicsOptions;
+                    break;
+                case 3:
+                    currentScreen = menuSoundOptions;
+                    break;
+                default:
+                    break;
+            }
+            System.Threading.Thread.Sleep(100);
+        }
+
+        public void MenuGameplayOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            switch (e.current)
+            {
+                case 0:
+                    currentScreen = menuOptions;
+                    break;
+                default:
+                    break;
+            }
+            System.Threading.Thread.Sleep(100);
+        }
+
+        public void MenuGraphicsOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            switch (e.current)
+            {
+                case 0:
+                    currentScreen = menuOptions;
+                    break;
+                default:
+                    break;
+            }
+            System.Threading.Thread.Sleep(100);
+        }
+
+        public void MenuSoundOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            switch (e.current)
+            {
+                case 0:
+                    currentScreen = menuOptions;
+                    break;
+                default:
+                    break;
+            }
+            System.Threading.Thread.Sleep(100);
         }
     }
 }
