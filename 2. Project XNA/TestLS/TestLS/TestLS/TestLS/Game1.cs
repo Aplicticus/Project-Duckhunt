@@ -8,29 +8,38 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Threading;
+using GifAnimation;
 
-namespace Dreamkeeper
+namespace TestLS
 {
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class DreamkeeperGame : Microsoft.Xna.Framework.Game
+    public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GifAnimation.GifAnimation animation;
+        //public Texture2D Plaatje;
+        ////int curruntstate = (int)Levels.INTRO;
+        //Color color;
 
-        //Screens
-        MainMenu mainMenu;
-        Gamemode gamemode;
-        Screen currentScreen;
+        //public enum GameState
+        //{
+        //    INTRO,
+        //    LOADINGSCREEN,
+        //    MAINMENU,
+        //}
 
-        public DreamkeeperGame()
+        //GameState currentstate = GameState.MAINMENU;
+
+        
+
+        public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            this.graphics.PreferredBackBufferWidth = 1280;
-            this.graphics.PreferredBackBufferHeight = 720;
         }
 
         /// <summary>
@@ -55,12 +64,11 @@ namespace Dreamkeeper
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            mainMenu = new MainMenu(Content, MainMenuEvent);
-            gamemode = new Gamemode(Content, GamemodeEvent);
+            animation = Content.Load<GifAnimation.GifAnimation>("LoadingBar");
 
-            // Starting Screen
-            currentScreen = mainMenu;
+            //Plaatje = Content.Load<Texture2D>("beastie-medium");
+
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -79,9 +87,33 @@ namespace Dreamkeeper
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Allows the game to exit
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                this.Exit();
+
+            animation.Update(gameTime.ElapsedGameTime.Ticks);
+
+            //if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            //    curruntstate++;
+            //if (Keyboard.GetState().IsKeyDown(Keys.Tab))
+            //    curruntstate--;
+
+            //switch (curruntstate)
+            //{
+            //    case (int)Levels.INTRO:
+            //        color = Color.Green;
+            //        break;
+            //    case (int)Levels.LOADINGSCREEN:
+                    
+            //        break;
+            //    case (int)Levels.MAINMENU:
+            //        color = Color.Black;
+            //        break;
+            //}
+
+
             // TODO: Add your update logic here
 
-            currentScreen.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -91,22 +123,18 @@ namespace Dreamkeeper
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
+
+            this.spriteBatch.Begin();
+            this.spriteBatch.Draw(this.animation.GetTexture(), new Vector2(0, 0), Color.White);
+            this.spriteBatch.End();
+
+            //GraphicsDevice.Clear(color);
+                
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            currentScreen.Draw(spriteBatch);
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }
-        public void MainMenuEvent(object obj, EventArgs e)
-        {
-            currentScreen = gamemode;
-        }
-        public void GamemodeEvent(object obj, EventArgs e)
-        {
-            currentScreen = mainMenu;
-        }
-    }    
+    }
 }

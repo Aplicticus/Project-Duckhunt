@@ -11,6 +11,9 @@ namespace XNA_Tommy
     class Button
     {
         public Texture2D texture { get; internal set; }
+        public SpriteFont spriteFont { get; internal set; }
+        public string text { get; internal set; }
+        public Color color { get; set; }
         public int positionEndX { get; internal set; }
         public int positionEndY { get; internal set; }
         public int positionX { get; internal set; }
@@ -29,9 +32,25 @@ namespace XNA_Tommy
             positionEndY = positionY + height;
         }
 
+        public Button(SpriteFont sprt, string txt, Color clr, Vector2 vec)
+        {
+            spriteFont = sprt;
+            text = txt;
+            color = clr;
+            positionX = (int)vec.X;
+            positionY = (int)vec.Y;
+            width = (int)spriteFont.MeasureString(text).X;
+            height = (int)spriteFont.MeasureString(text).Y;
+            positionEndX = positionX + width;
+            positionEndY = positionY + height;
+        }
+
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture, new Rectangle(positionX, positionY, width, height), Color.White);
+            if (texture != null)
+                spritebatch.Draw(texture, new Rectangle(positionX, positionY, width, height), Color.White);
+            else
+                spritebatch.DrawString(spriteFont, text, new Vector2(positionX, positionY), color);
         }
 
         public bool IsClicked(MouseState mouseState)
