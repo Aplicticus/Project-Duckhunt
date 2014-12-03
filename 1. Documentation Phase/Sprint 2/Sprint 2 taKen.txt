@@ -1,0 +1,61 @@
+1.
+	- Variabelen resetten. -1
+2.	
+	- Mouse/Keyboard controlls maken - 13
+3.
+	- Code controlleren aan de hand van het testplan en de definition of done. -3
+4. 
+	- Duidelijke conventies opstellen - 3
+	- 
+	- Je houden aan het framework. - 3
+	
+5.	
+	- Bepalen wat de helft van het programma is om een grens op te stellen En een aftekenlijst maken om bij te houden waar we zijn. - 3
+6.
+	- Wiimote laten werken. - 13
+7.
+	- User manual maken voor de wiimote - 3
+8.
+	- Moeilijkheidsgraad per level verhogen - 2
+9.
+	- Enemy models/sprites maken - 20
+10.
+	- Crosshair sprite/cursor maken - 2
+11.
+	- backgrounds maken -20
+	- HUD maken - 8
+	- graphics effecten toevoegen - 20
+12.
+	- Enemies variabele snelheden en richtingen meegeven. - 5
+13.
+	- Time limit voor levels opstellen - 1
+	- Tijds verloop bijhouden in de levels. (tijdsbalk) - 2
+14.
+	- Difficulty select werkend maken - 3
+	- Campaign mode maken
+		- intro's - 3
+		- Level select maken - 3
+		- Levels maken - 20
+	- Arcade mode maken - 8
+	- Bossfight replay mode maken - 3
+15.
+	- Death mechanic maken voor enemies - 5
+	- Death Sprite voor enemies - 8
+16.
+	- Speed mechanic voor enemies maken gebaseerd op een timer - 3
+17.
+	- Scores koppelen aan enemy speed. - 2
+18.
+	- Scores in Hud maken - 1
+	- Highscores bijhouden arcade - 3
+	- Highscores bijhouden campaign - 3 
+19.
+	- Hit animatie/popup maken - 8
+	- Miss animatie/popup maken - 8
+20.
+	- In hud naast score je target-score bij laten houden - 2
+21.
+	- Scrum Board en Schetsen bijhouden - 3
+22.
+	- Up to date blijven van Github. - 3
+
