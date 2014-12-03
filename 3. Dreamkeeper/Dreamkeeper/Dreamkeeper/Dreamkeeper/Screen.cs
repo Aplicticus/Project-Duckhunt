@@ -14,16 +14,27 @@ namespace Dreamkeeper
         //back in the main game class to notify the game that something has changed
         //or needs to be changed
         protected EventHandler ScreenEvent;
-        GraphicsDeviceManager graphics;
+        protected event EventHandler<SwitchEventArgs> CustomScreenEvent;
+        protected GraphicsDeviceManager graphics;
 
         public Screen(EventHandler theScreenEvent)
         {
             ScreenEvent = theScreenEvent;
         }
+        public Screen(EventHandler<SwitchEventArgs> theScreenEvent)
+        {
+            CustomScreenEvent = theScreenEvent;
+        }
 
         public Screen(EventHandler theScreenEvent, GraphicsDeviceManager graphics)
         {
             ScreenEvent = theScreenEvent;
+            this.graphics = graphics;
+        }
+
+        public Screen(EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics)
+        {
+            CustomScreenEvent = theScreenEvent;
             this.graphics = graphics;
         }
 

@@ -62,5 +62,14 @@ namespace Dreamkeeper
             else
                 return false;
         }
+
+        public bool Hover(MouseState mouseState)
+        {
+            if ((mouseState.X > positionX) && (mouseState.Y > positionY) &&
+               (mouseState.X < positionEndX) && (mouseState.Y < positionEndY))
+                return true;
+            else
+                return false;
+        }
     }
 }

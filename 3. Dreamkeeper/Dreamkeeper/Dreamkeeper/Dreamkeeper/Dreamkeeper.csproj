@@ -73,12 +73,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
-    <Compile Include="Gamemode.cs" />
+    <Compile Include="MenuGamemodeSelect.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="MenuGameplayOptions.cs" />
+    <Compile Include="MenuGraphicsOptions.cs" />
+    <Compile Include="MenuMain.cs" />
+    <Compile Include="MenuOptions.cs" />
+    <Compile Include="MenuSoundOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="DreamkeeperGame.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="SwitchEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

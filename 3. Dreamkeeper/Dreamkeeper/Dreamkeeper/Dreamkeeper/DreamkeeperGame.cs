@@ -19,19 +19,25 @@ namespace Dreamkeeper
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //Screens
-        MainMenu mainMenu;
-        Gamemode gamemode;
+        MenuMain menuMain;
+        MenuGamemodeSelect menuGamemodeSelect;
+        MenuOptions menuOptions;
+        MenuGameplayOptions menuGameplayOptions;
+        MenuGraphicsOptions menuGraphicsOptions;
+        MenuSoundOptions menuSoundOptions;
         Screen currentScreen;
+        private Stateswitch stateswitch = Stateswitch.MAIN;
 
         public DreamkeeperGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            this.graphics.PreferredBackBufferWidth = 1280;
-            this.graphics.PreferredBackBufferHeight = 720;
+            this.IsMouseVisible = true;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
         }
+
+        private enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -55,12 +61,15 @@ namespace Dreamkeeper
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            mainMenu = new MainMenu(Content, MainMenuEvent);
-            gamemode = new Gamemode(Content, GamemodeEvent);
+            menuMain = new MenuMain(Content, MenuMainEvent, graphics);
+            menuGamemodeSelect = new MenuGamemodeSelect(Content, MenuGamemodeSelectEvent, graphics);
+            menuOptions = new MenuOptions(Content, MenuOptionsEvent, graphics);
+            menuGameplayOptions = new MenuGameplayOptions(Content, MenuGameplayOptionsEvent, graphics);
+            menuGraphicsOptions = new MenuGraphicsOptions(Content, MenuGraphicsOptionsEvent, graphics);
+            menuSoundOptions = new MenuSoundOptions(Content, MenuSoundOptionsEvent, graphics);
+            currentScreen = menuMain;
 
-            // Starting Screen
-            currentScreen = mainMenu;
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -79,9 +88,12 @@ namespace Dreamkeeper
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-
             currentScreen.Update(gameTime);
+
+            // Allows the game to exit
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                this.Exit();
+
             base.Update(gameTime);
         }
 
@@ -93,20 +105,83 @@ namespace Dreamkeeper
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             spriteBatch.Begin();
             currentScreen.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-        public void MainMenuEvent(object obj, EventArgs e)
+
+        public void MenuMainEvent(object sender, SwitchEventArgs e)
         {
-            currentScreen = gamemode;
+            MenuSwitch(e.current);
         }
-        public void GamemodeEvent(object obj, EventArgs e)
+
+        public void MenuGamemodeSelectEvent(object sender, SwitchEventArgs e)
         {
-            currentScreen = mainMenu;
+            MenuSwitch(e.current);
+        }
+
+        public void MenuOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            MenuSwitch(e.current);
+        }
+
+        public void MenuGameplayOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            MenuSwitch(e.current);
+        }
+
+        public void MenuGraphicsOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            MenuSwitch(e.current);
+        }
+
+        public void MenuSoundOptionsEvent(object sender, SwitchEventArgs e)
+        {
+            MenuSwitch(e.current);
+        }
+
+        private void MenuSwitch(int i)
+        {
+            stateswitch = (Stateswitch)i;
+
+            switch (stateswitch)
+            {
+                case Stateswitch.INTRO:
+                    break;
+                case Stateswitch.MAIN:
+                    currentScreen = menuMain;
+                    break;
+                case Stateswitch.GAMEMODE:
+                    currentScreen = menuGamemodeSelect;
+                    break;
+                case Stateswitch.OPTIONS:
+                    currentScreen = menuOptions;
+                    break;
+                case Stateswitch.GAMEPLAYOPTS:
+                    currentScreen = menuGameplayOptions;
+                    break;
+                case Stateswitch.GRAPHICSOPTS:
+                    currentScreen = menuGraphicsOptions;
+                    break;
+                case Stateswitch.SOUNDOPTS:
+                    currentScreen = menuSoundOptions;
+                    break;
+                case Stateswitch.STORY:
+                    // Story
+                    break;
+                case Stateswitch.ARCADE:
+                    // Arcade
+                    break;
+                case Stateswitch.BOSS:
+                    // Boss
+                    break;
+                default:
+                    break;
+            }
+
+            System.Threading.Thread.Sleep(300);
         }
     }    
 }
