@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{A29F7DC0-6D93-4962-AD4E-669E38FEB733}</ProjectGuid>
+    <ProjectGuid>{9E5049A3-8071-4E1A-8781-B98089D54102}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XNA_Kevin</RootNamespace>
-    <AssemblyName>XNA_Kevin</AssemblyName>
+    <RootNamespace>Dreamkeeper</RootNamespace>
+    <AssemblyName>Dreamkeeper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaProfile>Reach</XnaProfile>
-    <XnaCrossPlatformGroupID>b98a6b08-4871-49d3-a51f-3c38820b950d</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>fdd4fb03-7bbe-4853-b1bf-3f03da729399</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
@@ -73,21 +73,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
+    <Compile Include="MenuGamemodeSelect.cs" />
+    <Compile Include="MainMenu.cs" />
+    <Compile Include="MenuGameplayOptions.cs" />
+    <Compile Include="MenuGraphicsOptions.cs" />
+    <Compile Include="MenuMain.cs" />
+    <Compile Include="MenuOptions.cs" />
+    <Compile Include="MenuSoundOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="DreamkeeperGame.cs" />
+    <Compile Include="Screen.cs" />
+    <Compile Include="SwitchEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XNA_KevinContent\XNA_KevinContent.contentproj">
-      <Name>XNA_KevinContent</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -110,6 +113,13 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XNA_KevinContent\XNA_KevinContent.contentproj">
+      <Project>{6EFAABCC-F989-4256-95B3-06D3AD9718A6}</Project>
+      <Name>XNA_KevinContent</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

@@ -1,6 +1,6 @@
 using System;
 
-namespace XNA_Kevin
+namespace Dreamkeeper
 {
 #if WINDOWS || XBOX
     static class Program
@@ -10,7 +10,7 @@ namespace XNA_Kevin
         /// </summary>
         static void Main(string[] args)
         {
-            using (Game1 game = new Game1())
+            using (DreamkeeperGame game = new DreamkeeperGame())
             {
                 game.Run();
             }

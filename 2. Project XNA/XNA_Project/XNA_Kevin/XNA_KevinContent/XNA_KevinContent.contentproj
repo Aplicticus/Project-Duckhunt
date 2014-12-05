@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{D72B662D-7AED-4EB5-85F2-56C8D09FC115}</ProjectGuid>
+    <ProjectGuid>{6EFAABCC-F989-4256-95B3-06D3AD9718A6}</ProjectGuid>
     <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -19,42 +19,79 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>XNA_KevinContent</RootNamespace>
+    <RootNamespace>DreamkeeperContent</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.FBXImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
+    <Folder Include="Assets\Arcade\Background\" />
+    <Folder Include="Assets\Arcade\Music\" />
+    <Folder Include="Assets\Arcade\SoundFX\" />
+    <Folder Include="Assets\Arcade\Sprites\" />
+    <Folder Include="Assets\Boss\Background\" />
+    <Folder Include="Assets\Boss\Music\" />
+    <Folder Include="Assets\Boss\SoundFX\" />
+    <Folder Include="Assets\Boss\Sprites\" />
+    <Folder Include="Assets\Global\Music\" />
+    <Folder Include="Assets\Global\SoundFX\" />
+    <Folder Include="Assets\Global\Sprites\" />
+    <Folder Include="Assets\Level0\Background\" />
+    <Folder Include="Assets\Level0\Music\" />
+    <Folder Include="Assets\Level0\SoundFX\" />
+    <Folder Include="Assets\Level0\Sprites\" />
+    <Folder Include="Assets\Level1\Background\" />
+    <Folder Include="Assets\Level1\Music\" />
+    <Folder Include="Assets\Level1\SoundFX\" />
+    <Folder Include="Assets\Level1\Sprites\" />
+    <Folder Include="Assets\Level2\Background\" />
+    <Folder Include="Assets\Level2\Music\" />
+    <Folder Include="Assets\Level2\SoundFX\" />
+    <Folder Include="Assets\Level2\Sprites\" />
+    <Folder Include="Assets\Level3\Background\" />
+    <Folder Include="Assets\Level3\Music\" />
+    <Folder Include="Assets\Level3\SoundFX\" />
+    <Folder Include="Assets\Level3\Sprites\" />
+    <Folder Include="Assets\Level4\Background\" />
+    <Folder Include="Assets\Level4\Music\" />
+    <Folder Include="Assets\Level4\SoundFX\" />
+    <Folder Include="Assets\Level4\Sprites\" />
+    <Folder Include="Assets\Level5\Background\" />
+    <Folder Include="Assets\Level5\Music\" />
+    <Folder Include="Assets\Level5\SoundFX\" />
+    <Folder Include="Assets\Level5\Sprites\" />
+    <Folder Include="Assets\Level6\Background\" />
+    <Folder Include="Assets\Level6\Music\" />
+    <Folder Include="Assets\Level6\SoundFX\" />
+    <Folder Include="Assets\Level6\Sprites\" />
+    <Folder Include="Assets\Level7\Background\" />
+    <Folder Include="Assets\Level7\Music\" />
+    <Folder Include="Assets\Level7\SoundFX\" />
+    <Folder Include="Assets\Level7\Sprites\" />
+    <Folder Include="Assets\Level8\Background\" />
+    <Folder Include="Assets\Level8\Music\" />
+    <Folder Include="Assets\Level8\SoundFX\" />
+    <Folder Include="Assets\Level8\Sprites\" />
+    <Folder Include="Assets\Level9\Background\" />
+    <Folder Include="Assets\Level9\Music\" />
+    <Folder Include="Assets\Level9\SoundFX\" />
+    <Folder Include="Assets\Level9\Sprites\" />
+    <Folder Include="Assets\Menus\GameSelect\" />
+    <Folder Include="Assets\Menus\MainMenu\" />
+    <Folder Include="Assets\Menus\Options\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="images\background.jpg">
-      <Name>background</Name>
+    <Compile Include="Assets\Menus\MenuFont.spritefont">
+      <Name>MenuFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Menus\Mountains1.png">
+      <Name>Mountains1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="songs\song1.mp3">
-      <Name>song1</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="images\background2.jpg">
-      <Name>background2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="songs\song2.mp3">
-      <Name>song2</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
