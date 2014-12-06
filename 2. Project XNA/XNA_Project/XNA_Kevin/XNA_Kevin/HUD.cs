@@ -1,14 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace XNA_Kevin
 {
-    class Button
+    class HUD
     {
         public Texture2D texture { get; internal set; }
         public SpriteFont spriteFont { get; internal set; }
@@ -20,8 +21,10 @@ namespace XNA_Kevin
         public int positionY { get; internal set; }
         public int width { get; internal set; }
         public int height { get; internal set; }
+        public int positionEndPointerX { get; internal set; }
 
-        public Button(Texture2D txtr, Rectangle rect)
+
+        public HUD(Texture2D txtr, Rectangle rect)
         {
             texture = txtr;
             positionX = rect.X;
@@ -32,7 +35,7 @@ namespace XNA_Kevin
             positionEndY = positionY + height;
         }
 
-        public Button(SpriteFont sprt, string txt, Color clr, Vector2 vec)
+        public HUD(SpriteFont sprt, string txt, Color clr, Vector2 vec)
         {
             spriteFont = sprt;
             text = txt;
@@ -43,6 +46,7 @@ namespace XNA_Kevin
             height = (int)spriteFont.MeasureString(text).Y;
             positionEndX = positionX + width;
             positionEndY = positionY + height;
+            positionEndPointerX = positionEndX;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -52,24 +56,19 @@ namespace XNA_Kevin
             else
                 spritebatch.DrawString(spriteFont, text, new Vector2(positionX, positionY), color);
         }
-
-        public bool IsClicked(MouseState mouseState)
-        {
-            if (mouseState.LeftButton == ButtonState.Pressed &&
-               (mouseState.X > positionX) && (mouseState.Y > positionY) &&
-               (mouseState.X < positionEndX) && (mouseState.Y < positionEndY))
+        public bool GetTimeState()
+        {            
+            Vector2 TimePointer = new Vector2(positionX, positionEndY);
+            
+            if (TimePointer.X == positionEndPointerX)
+            {
                 return true;
+            }
             else
+            {
+                positionX++;
                 return false;
-        }
-
-        public bool Hover(MouseState mouseState)
-        {
-            if ((mouseState.X > positionX) && (mouseState.Y > positionY) &&
-               (mouseState.X < positionEndX) && (mouseState.Y < positionEndY))
-                return true;
-            else
-                return false;
+            }
         }
     }
 }

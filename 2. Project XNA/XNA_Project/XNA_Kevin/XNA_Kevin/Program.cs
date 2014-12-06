@@ -1,6 +1,6 @@
 using System;
 
-namespace Dreamkeeper
+namespace XNA_Kevin
 {
 #if WINDOWS || XBOX
     static class Program

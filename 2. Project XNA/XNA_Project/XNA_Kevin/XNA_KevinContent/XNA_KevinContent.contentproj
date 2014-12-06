@@ -32,7 +32,6 @@
     <Folder Include="Assets\Boss\Sprites\" />
     <Folder Include="Assets\Global\Music\" />
     <Folder Include="Assets\Global\SoundFX\" />
-    <Folder Include="Assets\Global\Sprites\" />
     <Folder Include="Assets\Level0\Background\" />
     <Folder Include="Assets\Level0\Music\" />
     <Folder Include="Assets\Level0\SoundFX\" />
@@ -90,6 +89,20 @@
   <ItemGroup>
     <Compile Include="Assets\Menus\Mountains1.png">
       <Name>Mountains1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Global\Sprites\HUD_Timeline.png">
+      <Name>HUD_Timeline</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Global\Sprites\HUD_TimePointer.png">
+      <Name>HUD_TimePointer</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
