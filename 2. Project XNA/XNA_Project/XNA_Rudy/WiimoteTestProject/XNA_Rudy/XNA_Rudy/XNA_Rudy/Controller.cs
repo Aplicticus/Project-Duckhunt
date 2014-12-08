@@ -6,7 +6,6 @@ using WiimoteLib;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using WiiMouseUtils.WiimotesPipedComm;
 
 namespace XNA_Rudy
 {
@@ -15,13 +14,12 @@ namespace XNA_Rudy
         public Boolean useWiimote1 = true;
         public Boolean useWiimote2 = false;
         public Wiimote wiiM1 = new Wiimote();
-        public Wiimote wiiM2;
-
+        //public Wiimote wiiM2;
+ 
         Microsoft.Xna.Framework.Point IRPoint1 = new Microsoft.Xna.Framework.Point(0, 0);
         Microsoft.Xna.Framework.Point IRPoint2 = new Microsoft.Xna.Framework.Point(0, 0);
         Microsoft.Xna.Framework.Point IRPointMidpoint = new Microsoft.Xna.Framework.Point(0, 0);
 
-        //WiiMouseClient wClien = new WiiMouseClient();
 
         public Controller()
         {
@@ -29,41 +27,35 @@ namespace XNA_Rudy
             {
                 InitWiimote(wiiM1);
             }
-            else if (useWiimote2)
-            {
-                InitWiimote(wiiM2);
-            }
+            //else if (useWiimote2)
+            //{
+            //    InitWiimote(wiiM2);
+            //}
         }
 
         public void InitWiimote(Wiimote wm)
         {
             bool connected = false;
 
-            
-
-
-
             do
             {
                 try 
                 {
                     wm.Connect();
-                    //wm.InitializeMotionPlus();
                     wm.SetReportType(InputReport.ButtonsAccel, true);
-                    wm.SetReportType(InputReport.IRAccel, true);
-                    
+                    wm.SetReportType(InputReport.IRExtensionAccel, true);
+                    wm.WiimoteState.IRState.Mode = IRMode.Extended;
                     connected = true;
                 }
                 catch(Exception e)
                 {
-                
+                    Console.WriteLine(e);
                 }
             }while(!connected);
 
-            
-            wm.SetLEDs(true, false, false, false);
+            wm.SetLEDs(true, true, false, false);
 
-            BurstRumble(wm, 200);
+            BurstRumble(wm, 150);
         }
 
         public void BurstRumble(Wiimote wm, int burstTime)
@@ -139,18 +131,15 @@ namespace XNA_Rudy
         {
             return wm.WiimoteState.IRState.IRSensors[1].RawPosition;
         }
-
-        //public WiimoteLib.Point GetIRResultsS3(Wiimote wm)
-        //{
-        //    return wm.WiimoteState.IRState.IRSensors[2].RawPosition;
-        //}
-
+        public Vector2 GetIRResultsMidpoint(Wiimote wm)
+        {
+            return new Vector2(wm.WiimoteState.IRState.RawMidpoint.X, wm.WiimoteState.IRState.RawMidpoint.Y);
+        }
+        
         public Vector2 GetIRX(Wiimote wm, Vector2 oldVector)
         {
             float xPercent;
             float yPercent;
-            
-
 
             if(wm.WiimoteState.IRState.IRSensors[1].Position.X >= 1)
                 xPercent = 1;            
@@ -164,15 +153,25 @@ namespace XNA_Rudy
 
             return new Vector2(xPercent, yPercent) * oldVector;
 
-
         }
-       
-        public Vector2 GetPos(Wiimote wm)
+
+        public Vector2 GetPos(Wiimote wm, GraphicsDeviceManager graphics)
         {
             Vector2 pos;
-            float x = 0 - ((wm.WiimoteState.IRState.IRSensors[1].RawPosition.X + wm.WiimoteState.IRState.IRSensors[0].RawPosition.X) / 2) + 1023;
+            
+            float x0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.X;
+            float y0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.Y;
+            float x1 = wm.WiimoteState.IRState.IRSensors[1].RawPosition.X;
+            float y1 = wm.WiimoteState.IRState.IRSensors[1].RawPosition.Y;
+            float midx = wm.WiimoteState.IRState.Midpoint.X;
+            float midy = wm.WiimoteState.IRState.Midpoint.Y;
+
+            float x = (1 - ((x0 + x1) * midx) / 1024) * graphics.PreferredBackBufferWidth;
+            float y = (((y0 + y1) * midy) / 768) * graphics.PreferredBackBufferHeight;
+
             pos.X = x;
-            pos.Y = wm.WiimoteState.IRState.IRSensors[1].RawPosition.Y + wm.WiimoteState.IRState.IRSensors[0].RawPosition.Y / 2;
+            pos.Y = y;
+
             return pos;
         }
 

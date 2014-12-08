@@ -70,12 +70,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Net" />
-    <Reference Include="WiimoteLib, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\WiimotLib_1.7\WiimotLib_1.7\WiimoteLib.dll</HintPath>
-    </Reference>
-    <Reference Include="WiiMouseUtils.WiimotesPipedComm">
-      <HintPath>..\..\..\..\..\Downloads\AAAA\WiiMouseUtils.WiimotesPipedComm.dll</HintPath>
+    <Reference Include="WiimoteLib">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Downloads\WiimotLib_1.7\WiimotLib_1.7\WiimoteLib.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

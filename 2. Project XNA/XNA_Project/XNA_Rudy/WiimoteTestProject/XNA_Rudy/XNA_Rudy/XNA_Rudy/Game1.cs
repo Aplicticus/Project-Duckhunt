@@ -29,9 +29,8 @@ namespace XNA_Rudy
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferHeight = 900;
-            graphics.PreferredBackBufferWidth = 900;
-            //graphics.IsFullScreen = true;
+            graphics.PreferredBackBufferHeight = 768;
+            graphics.PreferredBackBufferWidth = 1377;
         }
 
         /// <summary>
@@ -79,7 +78,7 @@ namespace XNA_Rudy
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) || controller.GetPressedButton(controller.wiiM1) == "Home")
             {
                 controller.wiiM1.Dispose();
                 controller.wiiM1.Disconnect();
@@ -102,19 +101,20 @@ namespace XNA_Rudy
 
             spriteBatch.Begin();
 
-            //spriteBatch.DrawString(spriteFont, "RPY Values" + controller.GetAccelXYZ(Controller.wiiM1).ToString(), new Vector2(10, 10), Color.Black);
-            spriteBatch.DrawString(spriteFont, "IR Values" + controller.GetIRResultsS1(controller.wiiM1).ToString(), new Vector2(10, 50), Color.Black);
-            spriteBatch.DrawString(spriteFont, "IR Values" + controller.GetIRResultsS2(controller.wiiM1).ToString(), new Vector2(10, 100), Color.Black);
-            //spriteBatch.DrawString(spriteFont, "IR Values" + controller.GetIRResultsS3(controller.wiiM1).ToString(), new Vector2(10, 150), Color.Black);
+            spriteBatch.DrawString(spriteFont, "IR Values0" + controller.GetIRResultsS1(controller.wiiM1).ToString(), new Vector2(10, 50), Color.Black);
+            spriteBatch.DrawString(spriteFont, "IR Values1" + controller.GetIRResultsS2(controller.wiiM1).ToString(), new Vector2(10, 100), Color.Black);
+            spriteBatch.DrawString(spriteFont, "IR ValuesM" + controller.GetIRResultsMidpoint(controller.wiiM1).ToString(), new Vector2(10, 150), Color.Black);
+            spriteBatch.DrawString(spriteFont, "Pressed button: " + controller.GetPressedButton(controller.wiiM1), new Vector2(10, 200), Color.Black);
 
-            spriteBatch.DrawString(spriteFont, "Pressed button" + controller.GetPressedButton(controller.wiiM1), new Vector2(10, 200), Color.Black);
-            if (controller.GetPos(controller.wiiM1) != new Vector2(1023, 1023))
+            if (controller.GetPos(controller.wiiM1, graphics) != new Vector2(1023, 1023))
             {
-                spriteBatch.Draw(crosshair, controller.GetPos(controller.wiiM1), null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
-                currPos = controller.GetPos(controller.wiiM1);
+                spriteBatch.Draw(crosshair, controller.GetPos(controller.wiiM1, graphics), null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
+                currPos = controller.GetPos(controller.wiiM1, graphics);
             }
             else
+            {
                 spriteBatch.Draw(crosshair, currPos, null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
+            }
             spriteBatch.End();
 
  
