@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace XNA_Kevin
+namespace Dreamkeeper
 {
     class HUD
     {
@@ -57,7 +57,8 @@ namespace XNA_Kevin
         
         public bool GetTimeState()
         {    
-            time = positionEndX / 950;
+            //time = positionEndX / 950; // Default 10 seconds
+            time = positionEndX / 300; // 3 Seconds
             if (positionX >= positionEndX)                
                 return true;            
             else

@@ -19,6 +19,8 @@ namespace Dreamkeeper
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        HudTest hudTest;
+
         MenuMain menuMain;
         MenuGamemodeSelect menuGamemodeSelect;
         MenuOptions menuOptions;
@@ -37,7 +39,7 @@ namespace Dreamkeeper
             graphics.PreferredBackBufferHeight = 600;
         }
 
-        private enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS }
+        private enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, TEST}
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -67,7 +69,9 @@ namespace Dreamkeeper
             menuGameplayOptions = new MenuGameplayOptions(Content, MenuGameplayOptionsEvent, graphics);
             menuGraphicsOptions = new MenuGraphicsOptions(Content, MenuGraphicsOptionsEvent, graphics);
             menuSoundOptions = new MenuSoundOptions(Content, MenuSoundOptionsEvent, graphics);
-            currentScreen = menuMain;
+            hudTest = new HudTest(Content, HudTest, graphics);
+
+            currentScreen = hudTest;
 
             // TODO: use this.Content to load your game content here
         }
@@ -142,6 +146,11 @@ namespace Dreamkeeper
             MenuSwitch(e.current);
         }
 
+        public void HudTest(object sender, SwitchEventArgs e)
+        {
+            MenuSwitch(e.current);
+        }
+
         private void MenuSwitch(int i)
         {
             stateswitch = (Stateswitch)i;
@@ -176,6 +185,10 @@ namespace Dreamkeeper
                     break;
                 case Stateswitch.BOSS:
                     // Boss
+                    break;
+                case Stateswitch.TEST:
+                    currentScreen = hudTest;
+                    // TEST HUD
                     break;
                 default:
                     break;
