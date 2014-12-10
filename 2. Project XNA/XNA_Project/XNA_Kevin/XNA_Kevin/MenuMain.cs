@@ -17,6 +17,7 @@ namespace XNA_Kevin
         private MouseState oldState;
 
         private SpriteFont font;
+        private SpriteFont stopfont;
         private SpriteFont fontHighscore;
         private SpriteFont fontTimeline;
 
@@ -26,11 +27,17 @@ namespace XNA_Kevin
         private Button btnPlay;
         private Button btnOptions;
         private Button btnQuit;
+        private Button btnStop;
+        private Button boxStop;
 
         private HUD fontHighscoreHUD;
         private HUD bgTimelineHUD;
         private HUD timePointer;
+        private HUD bgAmmoHUD;
         private Texture2D timepointer;
+
+        private bool test = false;
+        private float elapsedTime;
        
 
 
@@ -41,6 +48,7 @@ namespace XNA_Kevin
             this.theScreenEvent = theScreenEvent;
             background = theContent.Load<Texture2D>("Assets\\Menus\\Mountains1");
             font = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
+            stopfont = theContent.Load<SpriteFont>("Assets\\Menus\\StopFont");
             timepointer = theContent.Load<Texture2D>("Assets\\Global\\Sprites\\HUD_TimePointer");
             
             fontHighscore = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
@@ -50,14 +58,22 @@ namespace XNA_Kevin
 
             btnPlay = new Button(font, "Play", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnOptions = new Button(font, "Options", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnQuit = new Button(font, "Quit", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnQuit = new Button(font, "Quit", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 250));
             
 
             fontHighscoreHUD = new HUD(fontHighscore, "00000000", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 40));
-
             bgTimelineHUD = new HUD(bgTimeline, new Rectangle(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 80, graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 10));
+           
             timePointer = new HUD(timepointer, new Rectangle(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 11, graphics.PreferredBackBufferWidth / 100, graphics.PreferredBackBufferHeight / 40));
-            timePointer.positionEndPointerX = bgTimelineHUD.positionEndX - 10;
+            timePointer.positionEndX = bgTimelineHUD.positionX + bgTimelineHUD.width;
+
+
+            bgAmmoHUD = new HUD(bgTimeline, new Rectangle(graphics.PreferredBackBufferWidth / 100 - 10, graphics.PreferredBackBufferHeight / 2 + 150, graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 4));
+            
+
+            
+            btnStop = new Button(stopfont, "STOP", Color.Yellow, new Vector2(graphics.PreferredBackBufferWidth / 2 - 75, graphics.PreferredBackBufferHeight / 2 - 100));
+            boxStop = new Button(background, new Rectangle(graphics.PreferredBackBufferWidth / 3 - 25, graphics.PreferredBackBufferHeight / 3, graphics.PreferredBackBufferWidth / 3 + 50, graphics.PreferredBackBufferHeight / 3));   
         }
 
         public override void Update(GameTime theTime)
@@ -80,18 +96,28 @@ namespace XNA_Kevin
             if (btnQuit.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
                 Environment.Exit(0);
 
+            if (btnStop.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
+                Environment.Exit(0);
+
             oldState = newState;
 
             // Change objects to resolution
             btnPlay = new Button(font, "Play", (btnPlay.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnOptions = new Button(font, "Options", (btnOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnQuit = new Button(font, "Quit", (btnQuit.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            
-            if (timePointer.GetTimeState()== true)
-            {
 
+
+            if (timePointer.GetTimeState() == true)
+            {
+                test = true;                
             }
+            else
+            {
+                test = false;
+            }
+
             
+            elapsedTime += (float)theTime.ElapsedGameTime.TotalSeconds;
+
 
             base.Update(theTime);
         }
@@ -107,10 +133,22 @@ namespace XNA_Kevin
             btnOptions.Draw(theBatch);
             btnQuit.Draw(theBatch);
 
+            if (test == true)
+            {
+                //btnStop.Draw(theBatch);
+                boxStop.Draw(theBatch);
+            }
+
             fontHighscoreHUD.Draw(theBatch);
 
             bgTimelineHUD.Draw(theBatch);
-            timePointer.Draw(theBatch);
+
+            if (elapsedTime > 0.0 && elapsedTime < 10.0)
+            {
+                timePointer.Draw(theBatch);
+            }
+
+            bgAmmoHUD.Draw(theBatch);
             
             base.Draw(theBatch);
         }

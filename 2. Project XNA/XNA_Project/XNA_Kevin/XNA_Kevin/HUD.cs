@@ -21,9 +21,9 @@ namespace XNA_Kevin
         public int positionY { get; internal set; }
         public int width { get; internal set; }
         public int height { get; internal set; }
-        public int positionEndPointerX { get; internal set; }
-
-
+        
+        
+        
         public HUD(Texture2D txtr, Rectangle rect)
         {
             texture = txtr;
@@ -46,7 +46,6 @@ namespace XNA_Kevin
             height = (int)spriteFont.MeasureString(text).Y;
             positionEndX = positionX + width;
             positionEndY = positionY + height;
-            positionEndPointerX = positionEndX;
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -56,17 +55,17 @@ namespace XNA_Kevin
             else
                 spritebatch.DrawString(spriteFont, text, new Vector2(positionX, positionY), color);
         }
+        
         public bool GetTimeState()
-        {            
-            Vector2 TimePointer = new Vector2(positionX, positionEndY);
-            
-            if (TimePointer.X == positionEndPointerX)
+        {
+            if (positionX == positionEndX)
             {
+                
                 return true;
             }
             else
             {
-                positionX++;
+                positionX ++;               
                 return false;
             }
         }

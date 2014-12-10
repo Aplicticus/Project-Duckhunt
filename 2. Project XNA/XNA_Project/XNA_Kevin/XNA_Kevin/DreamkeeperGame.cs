@@ -34,7 +34,7 @@ namespace XNA_Kevin
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
-            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferWidth = 2048;
             graphics.PreferredBackBufferHeight = 600;
         }
 
