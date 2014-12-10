@@ -22,6 +22,7 @@ namespace XNA_Tommy
 
         private Button btnPlay;
         private Button btnOptions;
+        private Button btnHighscore;
 
         public MenuMain(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics)
             : base(theScreenEvent, graphics)
@@ -34,6 +35,7 @@ namespace XNA_Tommy
 
             btnPlay = new Button(font, "Play", Color.Black, new Vector2(30, 100));
             btnOptions = new Button(font, "Options", Color.Black, new Vector2(30, 140));
+            btnHighscore = new Button(font, "Highscore", Color.Black, new Vector2(30, 180));
         }
 
         public override void Update(GameTime theTime)
@@ -53,6 +55,12 @@ namespace XNA_Tommy
                 method(this, new SwitchEventArgs(2));
             }
 
+            if (btnHighscore.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
+            {
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs(3));
+            }
+
             oldState = newState;
 
             base.Update(theTime);
@@ -66,6 +74,7 @@ namespace XNA_Tommy
             //Buttons
             btnPlay.Draw(theBatch);
             btnOptions.Draw(theBatch);
+            btnHighscore.Draw(theBatch);
 
             base.Draw(theBatch);
         }

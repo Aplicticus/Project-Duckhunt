@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 namespace XNA_Tommy
 {
@@ -26,6 +27,7 @@ namespace XNA_Tommy
         MenuGraphicsOptions menuGraphicsOptions;
         MenuSoundOptions menuSoundOptions;
         Screen currentScreen;
+        Highscore highscore;
 
         public Game1()
         {
@@ -43,6 +45,8 @@ namespace XNA_Tommy
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            //string fullpath = Path.Combine("Highscore.dat");
 
             base.Initialize();
         }
@@ -63,6 +67,7 @@ namespace XNA_Tommy
             menuGraphicsOptions = new MenuGraphicsOptions(Content, MenuGraphicsOptionsEvent, graphics);
             menuSoundOptions = new MenuSoundOptions(Content, MenuSoundOptionsEvent, graphics);
             currentScreen = menuMain;
+            highscore = new Highscore(Content, HighscoreEvent, graphics);
 
             // TODO: use this.Content to load your game content here
         }
@@ -119,6 +124,9 @@ namespace XNA_Tommy
                     break;
                 case 2:
                     currentScreen = menuOptions;
+                    break;
+                case 3:
+                    currentScreen = highscore;
                     break;
                 default:
                     break;
@@ -199,6 +207,19 @@ namespace XNA_Tommy
             {
                 case 0:
                     currentScreen = menuOptions;
+                    break;
+                default:
+                    break;
+            }
+            System.Threading.Thread.Sleep(100);
+        }
+
+        public void HighscoreEvent(object sender, SwitchEventArgs e)
+        {
+            switch (e.current)
+            {
+                case 0:
+                    currentScreen = highscore;
                     break;
                 default:
                     break;

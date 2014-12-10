@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding="utf-8" ?> 
+<Highscore>
+	<Person>
+		<Name>Henk Hutten</Name>
+		<Level>8</Level>
+		<Score>29000</Score>
+	</Person>
+  	<Person>
+    		<Name>Henk Hutten</Name>
+    		<Level>1</Level>
+    		<Score>600</Score>
+  	</Person>
+  	<Person>
+    		<Name>Henk Hutten</Name>
+    		<Level>3</Level>
+    		<Score>5000</Score>
+ 	 </Person>
+  	<Person>
+    		<Name>Henk Hutten</Name>
+    		<Level>6</Level>
+    		<Score>20000</Score>
+ 	 </Person>
+  	<Person>
+    		<Name>Henk Hutten</Name>
+    		<Level>9</Level>
+    		<Score>33000</Score>
+  	</Person>
+</Highscore>
