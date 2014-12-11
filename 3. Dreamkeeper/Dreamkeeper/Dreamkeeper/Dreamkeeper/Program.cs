@@ -1,6 +1,6 @@
 using System;
 
-namespace XNA_Tom
+namespace Dreamkeeper
 {
 #if WINDOWS || XBOX
     static class Program

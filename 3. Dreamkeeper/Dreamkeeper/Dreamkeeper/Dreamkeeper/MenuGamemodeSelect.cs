@@ -11,8 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace XNA_Tom
-
+namespace Dreamkeeper
 {
     class MenuGamemodeSelect : Screen
     {
