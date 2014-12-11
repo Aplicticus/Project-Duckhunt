@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{FE2BD95F-E8D6-4075-BCB3-8D64B05C54E3}</ProjectGuid>
+    <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
+    <ContentRootDirectory>Content</ContentRootDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>DreamkeeperContent</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Arcade\Background\" />
+    <Folder Include="Assets\Arcade\Music\" />
+    <Folder Include="Assets\Arcade\SoundFX\" />
+    <Folder Include="Assets\Arcade\Sprites\" />
+    <Folder Include="Assets\Boss\Background\" />
+    <Folder Include="Assets\Boss\Music\" />
+    <Folder Include="Assets\Boss\SoundFX\" />
+    <Folder Include="Assets\Boss\Sprites\" />
+    <Folder Include="Assets\Global\Music\" />
+    <Folder Include="Assets\Global\SoundFX\" />
+    <Folder Include="Assets\Level0\Background\" />
+    <Folder Include="Assets\Level0\Music\" />
+    <Folder Include="Assets\Level0\SoundFX\" />
+    <Folder Include="Assets\Level0\Sprites\" />
+    <Folder Include="Assets\Level1\Background\" />
+    <Folder Include="Assets\Level1\Music\" />
+    <Folder Include="Assets\Level1\SoundFX\" />
+    <Folder Include="Assets\Level1\Sprites\" />
+    <Folder Include="Assets\Level2\Background\" />
+    <Folder Include="Assets\Level2\Music\" />
+    <Folder Include="Assets\Level2\SoundFX\" />
+    <Folder Include="Assets\Level2\Sprites\" />
+    <Folder Include="Assets\Level3\Background\" />
+    <Folder Include="Assets\Level3\Music\" />
+    <Folder Include="Assets\Level3\SoundFX\" />
+    <Folder Include="Assets\Level3\Sprites\" />
+    <Folder Include="Assets\Level4\Background\" />
+    <Folder Include="Assets\Level4\Music\" />
+    <Folder Include="Assets\Level4\SoundFX\" />
+    <Folder Include="Assets\Level4\Sprites\" />
+    <Folder Include="Assets\Level5\Background\" />
+    <Folder Include="Assets\Level5\Music\" />
+    <Folder Include="Assets\Level5\SoundFX\" />
+    <Folder Include="Assets\Level5\Sprites\" />
+    <Folder Include="Assets\Level6\Background\" />
+    <Folder Include="Assets\Level6\Music\" />
+    <Folder Include="Assets\Level6\SoundFX\" />
+    <Folder Include="Assets\Level6\Sprites\" />
+    <Folder Include="Assets\Level7\Background\" />
+    <Folder Include="Assets\Level7\Music\" />
+    <Folder Include="Assets\Level7\SoundFX\" />
+    <Folder Include="Assets\Level7\Sprites\" />
+    <Folder Include="Assets\Level8\Background\" />
+    <Folder Include="Assets\Level8\Music\" />
+    <Folder Include="Assets\Level8\SoundFX\" />
+    <Folder Include="Assets\Level8\Sprites\" />
+    <Folder Include="Assets\Level9\Background\" />
+    <Folder Include="Assets\Level9\Music\" />
+    <Folder Include="Assets\Level9\SoundFX\" />
+    <Folder Include="Assets\Level9\Sprites\" />
+    <Folder Include="Assets\Menus\GameSelect\" />
+    <Folder Include="Assets\Menus\MainMenu\" />
+    <Folder Include="Assets\Menus\Options\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Menus\MenuFont.spritefont">
+      <Name>MenuFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Menus\Mountains1.png">
+      <Name>Mountains1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Menus\StopFont.spritefont">
+      <Name>StopFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Global\Sprites\HUD_Timeline.png">
+      <Name>HUD_Timeline</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Global\Sprites\HUD_TimePointer.png">
+      <Name>HUD_TimePointer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
+  <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
