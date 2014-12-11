@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Dreamkeeper
+namespace XNA_Tom
 {
     class MenuOptions : Screen
     {
