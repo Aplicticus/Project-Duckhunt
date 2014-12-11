@@ -33,6 +33,7 @@ namespace XNA_Kevin
         private HUD bgTimelineHUD;
         private HUD timePointer;
         private HUD bgAmmoHUD;
+        private HUD hud = new HUD();
         private Texture2D timepointer;
 
         private bool isOnEnd = false;
@@ -59,9 +60,10 @@ namespace XNA_Kevin
             btnQuit = new Button(font, "Quit", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 250));
 
 
-
             
-            highscoreHUD = new HUD(fontHighscore, "HALLO", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 40));
+            
+            
+            highscoreHUD = new HUD(fontHighscore, hud.points.ToString(), Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 40));
             
             
             bgTimelineHUD = new HUD(bgTimeline, new Rectangle(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 80, graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 10));
@@ -110,7 +112,6 @@ namespace XNA_Kevin
             {
                 isOnEnd = true;            
             }
-           
 
 
            
@@ -126,33 +127,18 @@ namespace XNA_Kevin
             //Draw logic
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             
-
             //Buttons
             btnPlay.Draw(theBatch);
             btnOptions.Draw(theBatch);
             btnQuit.Draw(theBatch);
-
             if (isOnEnd == true)
             {
                 boxStop.Draw(theBatch);
             }
-
-            
             highscoreHUD.Draw(theBatch);
-
-            
-
-            
-
             bgTimelineHUD.Draw(theBatch);
-
-            
-            
             timePointer.Draw(theBatch);
-            
-
             bgAmmoHUD.Draw(theBatch);
-            
             base.Draw(theBatch);
         }
     }
