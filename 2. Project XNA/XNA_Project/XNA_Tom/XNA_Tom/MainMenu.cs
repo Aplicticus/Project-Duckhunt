@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Dreamkeeper
+namespace XNA_Tom
 {
     class MainMenu : Screen
     {
