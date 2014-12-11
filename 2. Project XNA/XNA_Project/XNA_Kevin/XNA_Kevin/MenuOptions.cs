@@ -13,7 +13,7 @@ namespace XNA_Kevin
     class MenuOptions : Screen
     {
         public event EventHandler<SwitchEventArgs> theScreenEvent;
-        private GraphicsDeviceManager graphics;
+        //private GraphicsDeviceManager graphics;
 
         MouseState oldState;
 
@@ -23,7 +23,6 @@ namespace XNA_Kevin
         private Button btnGraphicsOptions;
         private Button btnSoundOption;
         private Button btnBack;
-        private HUD hud;
         private SpriteFont font;
 
 

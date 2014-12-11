@@ -22,6 +22,7 @@ namespace XNA_Kevin
         public float width { get; internal set; }
         public float height { get; internal set; }
         public float time { get; internal set; }
+       
         
         public HUD(Texture2D txtr, Rectangle rect)
         {
@@ -47,22 +48,37 @@ namespace XNA_Kevin
             positionEndY = positionY + height;
         }
 
+        public HUD(SpriteFont sprt, string txt, Color clr, Vector2 vec)
+        {
+            spriteFont = sprt;
+            text = txt;
+            color = clr;
+            positionX = (int)vec.X;
+            positionY = (int)vec.Y;
+            width = (int)spriteFont.MeasureString(text).X;
+            height = (int)spriteFont.MeasureString(text).Y;
+            positionEndX = positionX + width;
+            positionEndY = positionY + height;
+        }
+
         public void Draw(SpriteBatch spritebatch)
         {
             if (texture != null)
-                spritebatch.Draw(texture, new Rectangle((int)positionX, (int)positionY, (int)width, (int)height), Color.White);
+                spritebatch.Draw(texture, new Rectangle((int)positionX, (int)positionY, (int)width, (int)height), Color.White); 
             else
+            {
                 spritebatch.DrawString(spriteFont, text, new Vector2(positionX, positionY), color);
+            }
         }
         
         public bool GetTimeState()
-        {    
-            time = positionEndX / 950;
+        {            
+            time = positionEndX / 950; 
             if (positionX >= positionEndX)                
                 return true;            
             else
             {
-                positionX += time;               
+                positionX += time;                
                 return false;
             }
         }

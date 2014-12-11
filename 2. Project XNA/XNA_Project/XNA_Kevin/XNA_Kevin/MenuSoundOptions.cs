@@ -14,7 +14,7 @@ namespace XNA_Kevin
     class MenuSoundOptions : Screen
     {
         private EventHandler<SwitchEventArgs> theScreenEvent;
-        private GraphicsDeviceManager graphics;
+        //private GraphicsDeviceManager graphics;
 
         private Texture2D background;
 

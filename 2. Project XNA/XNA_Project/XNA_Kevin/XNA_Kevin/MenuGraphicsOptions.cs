@@ -12,7 +12,7 @@ namespace XNA_Kevin
     class MenuGraphicsOptions : Screen
     {
         private EventHandler<SwitchEventArgs> theScreenEvent;
-        private GraphicsDeviceManager graphics;
+        //private GraphicsDeviceManager graphics;
         private ContentManager content;
 
         private Texture2D background;

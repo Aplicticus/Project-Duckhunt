@@ -16,7 +16,7 @@ namespace XNA_Kevin
     class MenuGamemodeSelect : Screen
     {
         private EventHandler<SwitchEventArgs> theScreenEvent;
-        private GraphicsDeviceManager graphics;
+        //private GraphicsDeviceManager graphics;
 
         private Texture2D background;
 

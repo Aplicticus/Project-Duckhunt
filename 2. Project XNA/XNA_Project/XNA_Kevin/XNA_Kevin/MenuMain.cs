@@ -12,7 +12,7 @@ namespace XNA_Kevin
     class MenuMain : Screen
     {
         private EventHandler<SwitchEventArgs> theScreenEvent;
-        private GraphicsDeviceManager graphics;
+        //private GraphicsDeviceManager graphics;
 
         private MouseState oldState;
 
@@ -29,7 +29,7 @@ namespace XNA_Kevin
         private Button btnQuit;
         private Button boxStop;
 
-        private HUD fontHighscoreHUD;
+        private HUD highscoreHUD;
         private HUD bgTimelineHUD;
         private HUD timePointer;
         private HUD bgAmmoHUD;
@@ -57,9 +57,13 @@ namespace XNA_Kevin
             btnPlay = new Button(font, "Play", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnOptions = new Button(font, "Options", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
             btnQuit = new Button(font, "Quit", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 250));
-            
 
-            fontHighscoreHUD = new HUD(fontHighscore, "00000000", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 40));
+
+
+            
+            highscoreHUD = new HUD(fontHighscore, "HALLO", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 40));
+            
+            
             bgTimelineHUD = new HUD(bgTimeline, new Rectangle(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 80, graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 10));
            
             timePointer = new HUD(timepointer, new Rectangle(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 11, graphics.PreferredBackBufferWidth / 100, graphics.PreferredBackBufferHeight / 40));
@@ -101,11 +105,19 @@ namespace XNA_Kevin
             btnPlay = new Button(font, "Play", (btnPlay.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnOptions = new Button(font, "Options", (btnOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
 
-
+           
             if (timePointer.GetTimeState() == true)
             {
-                isOnEnd = true;                
+                isOnEnd = true;            
             }
+           
+
+
+           
+            
+            
+            
+
             base.Update(theTime);
         }
 
@@ -120,14 +132,21 @@ namespace XNA_Kevin
             btnOptions.Draw(theBatch);
             btnQuit.Draw(theBatch);
 
-            if (isOnEnd == true) 
+            if (isOnEnd == true)
+            {
                 boxStop.Draw(theBatch);
+            }
+
+            
+            highscoreHUD.Draw(theBatch);
+
             
 
-            fontHighscoreHUD.Draw(theBatch);
+            
 
             bgTimelineHUD.Draw(theBatch);
 
+            
             
             timePointer.Draw(theBatch);
             
