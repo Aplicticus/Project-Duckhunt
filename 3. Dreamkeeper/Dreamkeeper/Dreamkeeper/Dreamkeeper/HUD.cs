@@ -34,6 +34,17 @@ namespace Dreamkeeper
             positionEndX = positionX + width;
         }
 
+        public HUD(Texture2D txtr, FloatRectangle rect)
+        {
+            texture = txtr;
+            positionX = rect.Xvalue;
+            positionY = rect.Yvalue;
+            width = rect.width;
+            height = rect.height;
+            positionEndY = positionY + height;
+            positionEndX = positionX + width;
+        }
+
         public HUD(SpriteFont sprt, string txt, Color clr, Vector2 vec)
         {
             spriteFont = sprt;

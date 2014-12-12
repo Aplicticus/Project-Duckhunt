@@ -30,7 +30,7 @@ namespace XNA_Kevin
         private Stateswitch stateswitch = Stateswitch.MAIN;
 
         public DreamkeeperGame()
-        {
+        {           
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;

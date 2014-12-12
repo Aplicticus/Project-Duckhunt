@@ -18,17 +18,22 @@ namespace Dreamkeeper
 
         private SpriteFont font;
         private SpriteFont stopfont;
-        private SpriteFont fontHighscore;
+        private SpriteFont scoreFont;
         private SpriteFont fontTimeline;
 
         private Texture2D background;
         private Texture2D bgTimeline;
+        private Texture2D bgScore;
         private Button boxStop;
 
-        private HUD fontHighscoreHUD;
+        private HUD highscoreHUD;
+        private HUD bgScoreHUD;
+        private HUD bgTargetScoreHUD;
+        private HUD bgScoresHUD;
         private HUD bgTimelineHUD;
         private HUD timePointer;
         private HUD bgAmmoHUD;
+        private HUD bgRightCloud;
         private Texture2D timepointer;
 
         private bool isOnEnd;
@@ -45,12 +50,25 @@ namespace Dreamkeeper
             font = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
             stopfont = theContent.Load<SpriteFont>("Assets\\Menus\\StopFont");
             timepointer = theContent.Load<Texture2D>("Assets\\Global\\Sprites\\HUD_TimePointer");
+
+            bgScore = theContent.Load<Texture2D>("Assets\\Global\\Sprites\\cloud");
+            scoreFont = theContent.Load<SpriteFont>("Assets\\Menus\\ScoreFont");
             
-            fontHighscore = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
+            
+            //fontHighscore = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
             bgTimeline = theContent.Load<Texture2D>("Assets\\Global\\Sprites\\HUD_Timeline");
             fontTimeline = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
+
+            // Backgrounds of scores has to be changed ( transparant )
+            bgScoreHUD = new HUD(bgScore, new FloatRectangle(graphics.PreferredBackBufferWidth / 20f, graphics.PreferredBackBufferHeight / 40f, graphics.PreferredBackBufferWidth / 10f, graphics.PreferredBackBufferHeight / 15f));
+            bgTargetScoreHUD = new HUD(bgScore, new FloatRectangle(graphics.PreferredBackBufferWidth / 20f, graphics.PreferredBackBufferHeight / 10f, graphics.PreferredBackBufferWidth / 6f, graphics.PreferredBackBufferHeight / 15f));
+            bgScoresHUD = new HUD(bgScore, new FloatRectangle(graphics.PreferredBackBufferWidth / 33f, graphics.PreferredBackBufferHeight / 80f, graphics.PreferredBackBufferWidth / 5f, graphics.PreferredBackBufferHeight / 6f));
+            highscoreHUD = new HUD(scoreFont, "Score" + "\n" + "00000000" + "\n" + "Target Score" + "\n" + "00000000", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 40));
+
+            // Right cloud
+            bgRightCloud = new HUD(bgScore, new FloatRectangle(graphics.PreferredBackBufferWidth / 1.3f, graphics.PreferredBackBufferHeight / 80.0f, graphics.PreferredBackBufferWidth / 5f, graphics.PreferredBackBufferHeight / 6f));
+
             
-            fontHighscoreHUD = new HUD(fontHighscore, "00000000", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 40));
             bgTimelineHUD = new HUD(bgTimeline, new Rectangle(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 80, graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 10));
            
             timePointer = new HUD(timepointer, new Rectangle(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 11, graphics.PreferredBackBufferWidth / 100, graphics.PreferredBackBufferHeight / 40));
@@ -85,10 +103,11 @@ namespace Dreamkeeper
             
             if (isOnEnd == true) 
                 boxStop.Draw(theBatch);
-
-            fontHighscoreHUD.Draw(theBatch);
-
-           
+            bgRightCloud.Draw(theBatch);
+            bgScoresHUD.Draw(theBatch);
+            bgScoreHUD.Draw(theBatch);
+            bgTargetScoreHUD.Draw(theBatch);
+            highscoreHUD.Draw(theBatch);
             bgTimelineHUD.Draw(theBatch);
             timePointer.Draw(theBatch);  
             bgAmmoHUD.Draw(theBatch);

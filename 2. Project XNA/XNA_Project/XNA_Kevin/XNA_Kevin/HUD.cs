@@ -22,14 +22,8 @@ namespace XNA_Kevin
         public float width { get; internal set; }
         public float height { get; internal set; }
         public float time { get; internal set; }
-        public int points { get; internal set; }
-
-        
-       
-        public HUD()
-        {
-            points = 1;
-        }
+        public float timelaps { get; internal set; }
+                      
         public HUD(Texture2D txtr, Rectangle rect)
         {
             texture = txtr;
@@ -40,6 +34,18 @@ namespace XNA_Kevin
             positionEndY = positionY + height;
             positionEndX = positionX + width;
         }
+
+        public HUD(Texture2D txtr, FloatRectangle rect)
+        {
+            texture = txtr;
+            positionX = rect.Xvalue;
+            positionY = rect.Yvalue;
+            width = rect.width;
+            height = rect.height;
+            positionEndY = positionY + height;
+            positionEndX = positionX + width;
+        }
+
 
         public HUD(SpriteFont sprt, string txt, Color clr, Vector2 vec)
         {
@@ -66,13 +72,14 @@ namespace XNA_Kevin
         
         public bool GetTimeState()
         {
-            time = positionEndX / 950;            
+            //timelaps = 17100; // 1 minute = 5700~
+            timelaps = 950;
+            time = positionEndX / timelaps;            
             if (positionX >= positionEndX)                
                 return true;            
             else
             {                
                 positionX += time;
-                points++;
                 return false;
             }
         }

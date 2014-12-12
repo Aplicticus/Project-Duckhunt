@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
+    <Compile Include="FloatRectangle.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="MenuGamemodeSelect.cs" />
     <Compile Include="MainMenu.cs" />
