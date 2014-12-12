@@ -58,7 +58,7 @@ namespace XNA_Tom
 
             btnPlay = new Button(font, "Play", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnOptions = new Button(font, "Options", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnQuit = new Button(font, "Quit", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 250));
+            btnQuit = new Button(font, "Quitttt", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 250));
 
 
             
