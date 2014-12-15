@@ -56,7 +56,7 @@ namespace StateSwitchTest
         {
             if (!dead)
             {
-                travelingAnimation.Draw(spriteBatch, position, 1f);
+                travelingAnimation.Draw(spriteBatch, position, 1f / 800 * graphics.Viewport.Width);
                 spriteBatch.DrawString(font, health.ToString(), new Vector2(position.X + travelingAnimation.Texture.Width / travelingAnimation.Columns, position.Y), Color.White);
             }
         }

@@ -40,10 +40,10 @@ namespace StateSwitchTest
             font = theContent.Load<SpriteFont>("MenuFont");
 
             // Buttons
-            btnResultion = new Button(font, "Resolution " + graphics.PreferredBackBufferWidth + "x" + graphics.PreferredBackBufferHeight, Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnFullscreen = new Button(font, "Fullscreen", (graphics.IsFullScreen) ? Color.Green : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnResultion = new Button(font, "Resolutie " + graphics.PreferredBackBufferWidth + "x" + graphics.PreferredBackBufferHeight, Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnFullscreen = new Button(font, "Volledigscherm", (graphics.IsFullScreen) ? Color.Green : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
             btnAntiAliasing = new Button(font, "Anti-aliasing", (graphics.PreferMultiSampling) ? Color.Green : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnBack = new Button(font, "Terug", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
         }
 
         public override void Update(GameTime theTime)
@@ -108,10 +108,10 @@ namespace StateSwitchTest
             oldState = newState;
 
             // Change objects to resolution
-            btnResultion = new Button(font, "Resolution " + graphics.PreferredBackBufferWidth + "x" + graphics.PreferredBackBufferHeight, (btnResultion.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnFullscreen = new Button(font, "Fullscreen", (graphics.IsFullScreen) ? (btnFullscreen.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnFullscreen.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnResultion = new Button(font, "Resolutie " + graphics.PreferredBackBufferWidth + "x" + graphics.PreferredBackBufferHeight, (btnResultion.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnFullscreen = new Button(font, "Volledigscherm", (graphics.IsFullScreen) ? (btnFullscreen.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnFullscreen.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
             btnAntiAliasing = new Button(font, "Anti-aliasing", (graphics.PreferMultiSampling) ? (btnAntiAliasing.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnAntiAliasing.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnBack = new Button(font, "Terug", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
 
             base.Update(theTime);
         }

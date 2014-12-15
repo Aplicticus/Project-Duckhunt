@@ -17,6 +17,8 @@ namespace StateSwitchTest
         ContentManager theContent;
         Ammonition ammo;
         Texture2D background;
+        SpriteFont font;
+        string score;
 
         public Level(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics, Texture2D background, Difficulty difficulty, Enemy enemy)
             : base(theScreenEvent, graphics)
@@ -26,6 +28,8 @@ namespace StateSwitchTest
             this.difficulty = difficulty;
             ammo = new Ammonition(theContent, graphics.GraphicsDevice, "Gravel", Ammonitions.GRAVEL);
             this.background = background;
+            font = theContent.Load<SpriteFont>("MenuFont");
+            score = "0";
 
             startEnemy = enemy;
             startEnemy.health *= (int)difficulty + 1;
@@ -38,7 +42,10 @@ namespace StateSwitchTest
             enemy.Update(ammo);
 
             if (enemy.dead)
+            {
                 enemy = new Enemy(startEnemy.name, startEnemy.rightTexture, startEnemy.leftTexture, startEnemy.position, startEnemy.health, startEnemy.velocity, theContent, graphics.GraphicsDevice);
+                score = (int.Parse(score) + 200).ToString();
+            }
         }
 
         //Draw any objects specific to the screen
@@ -47,6 +54,7 @@ namespace StateSwitchTest
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             enemy.Draw(theBatch);
             ammo.Draw(theBatch);
+            theBatch.DrawString(font, score, new Vector2(30, 30), Color.White);
         }
     }
 }

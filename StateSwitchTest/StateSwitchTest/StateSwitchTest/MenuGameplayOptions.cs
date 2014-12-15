@@ -40,10 +40,10 @@ namespace StateSwitchTest
             font = theContent.Load<SpriteFont>("MenuFont");
 
             // Buttons
-            btnDisplayEnemyHealthbars = new Button(font, "Display Enemy Healthbars", Color.Green, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnDisplayEnemyHealthbarnumbers = new Button(font, "Display Enemy Healthbarnumbers", Color.Green, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnDisplayDamageDealt = new Button(font, "Display Damage Dealth", Color.Green, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnDisplayEnemyHealthbars = new Button(font, "Laat monster levensbalk zien", Color.Green, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnDisplayEnemyHealthbarnumbers = new Button(font, "Laat monster levens zien", Color.Green, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnDisplayDamageDealt = new Button(font, "Laat schade zien", Color.Green, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnBack = new Button(font, "Terug", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
         }
 
         public override void Update(GameTime theTime)
@@ -85,10 +85,10 @@ namespace StateSwitchTest
             oldState = newState;
 
             // Change objects to resolution
-            btnDisplayEnemyHealthbars = new Button(font, "Display Enemy Healthbars", (displayEnemyHealthbars) ? (btnDisplayEnemyHealthbars.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnDisplayEnemyHealthbars.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnDisplayEnemyHealthbarnumbers = new Button(font, "Display Enemy Healthbarnumbers", (displayEnemyHealthbarnumbers) ? (btnDisplayEnemyHealthbarnumbers.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnDisplayEnemyHealthbarnumbers.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnDisplayDamageDealt = new Button(font, "Display Damage Dealth", (displayDamageDealt) ? (btnDisplayDamageDealt.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnDisplayDamageDealt.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnDisplayEnemyHealthbars = new Button(font, "Laat monster levensbalk zien", (displayEnemyHealthbars) ? (btnDisplayEnemyHealthbars.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnDisplayEnemyHealthbars.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnDisplayEnemyHealthbarnumbers = new Button(font, "Laat monster levens zien", (displayEnemyHealthbarnumbers) ? (btnDisplayEnemyHealthbarnumbers.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnDisplayEnemyHealthbarnumbers.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnDisplayDamageDealt = new Button(font, "Laat schade zien", (displayDamageDealt) ? (btnDisplayDamageDealt.Hover(Mouse.GetState())) ? Color.LightGreen : Color.Green : (btnDisplayDamageDealt.Hover(Mouse.GetState())) ? Color.LightSalmon : Color.Red, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnBack = new Button(font, "Terug", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
 
             base.Update(theTime);
         }

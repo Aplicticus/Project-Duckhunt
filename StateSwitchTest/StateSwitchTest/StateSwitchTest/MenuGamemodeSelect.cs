@@ -36,10 +36,10 @@ namespace StateSwitchTest
             font = theContent.Load<SpriteFont>("MenuFont");
             
             // Buttons
-            btnStory = new Button(font, "Story", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnStory = new Button(font, "Verhaal", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnArcade = new Button(font, "Arcade", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnBoss = new Button(font, "Boss", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnBoss = new Button(font, "Baas", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnBack = new Button(font, "Terug", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
         }
 
         public override void Update(GameTime theTime)
@@ -62,10 +62,10 @@ namespace StateSwitchTest
             oldState = newState;
 
             // Change objects to resolution
-            btnStory = new Button(font, "Story", (btnStory.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnStory = new Button(font, "Verhaal", (btnStory.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnArcade = new Button(font, "Arcade", (btnArcade.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnBoss = new Button(font, "Boss", (btnBoss.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnBoss = new Button(font, "Baas", (btnBoss.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnBack = new Button(font, "Terug", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
 
             base.Update(theTime);
         }

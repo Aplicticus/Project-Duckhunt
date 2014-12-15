@@ -39,7 +39,7 @@ namespace StateSwitchTest
             // Buttons
             btnMasterVolumeDescrease = new Button(font, "<", Color.Black, new Vector2(300, 100));
             btnMasterVolumeIncrease = new Button(font, ">", Color.Black, new Vector2(360, 100));
-            btnBack = new Button(font, "Back", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnBack = new Button(font, "Terug", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
         }
 
         public override void Update(GameTime theTime)
@@ -65,7 +65,7 @@ namespace StateSwitchTest
             // Change objects to resolution
             btnMasterVolumeDescrease = new Button(font, "<", (btnMasterVolumeDescrease.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3 + 300, 100));
             btnMasterVolumeIncrease = new Button(font, ">", (btnMasterVolumeIncrease.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3 + 360, 100));
-            btnBack = new Button(font, "Back", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3 , 140));
+            btnBack = new Button(font, "Terug", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3 , 140));
 
             base.Update(theTime);
         }

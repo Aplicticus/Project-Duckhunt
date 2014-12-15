@@ -33,9 +33,9 @@ namespace StateSwitchTest
 
             font = theContent.Load<SpriteFont>("MenuFont");
             
-            btnPlay = new Button(font, "Play", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnOptions = new Button(font, "Options", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnQuit = new Button(font, "Quit", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnPlay = new Button(font, "Spelen", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnOptions = new Button(font, "Opties", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnQuit = new Button(font, "Stoppen", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
         }
 
         public override void Update(GameTime theTime)
@@ -61,9 +61,9 @@ namespace StateSwitchTest
             oldState = newState;
 
             // Change objects to resolution
-            btnPlay = new Button(font, "Play", (btnPlay.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnOptions = new Button(font, "Options", (btnOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnQuit = new Button(font, "Quit", (btnQuit.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnPlay = new Button(font, "Spelen", (btnPlay.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnOptions = new Button(font, "Opties", (btnOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnQuit = new Button(font, "Stoppen", (btnQuit.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
 
             base.Update(theTime);
         }

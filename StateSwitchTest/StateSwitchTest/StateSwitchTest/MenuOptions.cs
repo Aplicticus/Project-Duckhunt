@@ -36,10 +36,10 @@ namespace StateSwitchTest
 
             font = theContent.Load<SpriteFont>("MenuFont");
 
-            btnGameplayOptions = new Button(font, "Gameplay Options", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnGraphicsOptions = new Button(font, "Graphics Options", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnSoundOption = new Button(font, "Sound Options", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnGameplayOptions = new Button(font, "Spel opties", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnGraphicsOptions = new Button(font, "Grafische opties", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnSoundOption = new Button(font, "Geluid opties", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnBack = new Button(font, "Terug", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
         }
         
         public override void Update(GameTime theTime)
@@ -74,10 +74,10 @@ namespace StateSwitchTest
             oldState = newState;
 
             // Change objects to resolution
-            btnGameplayOptions = new Button(font, "Gameplay Options", (btnGameplayOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
-            btnGraphicsOptions = new Button(font, "Graphics Options", (btnGraphicsOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
-            btnSoundOption = new Button(font, "Sound Options", (btnSoundOption.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
-            btnBack = new Button(font, "Back", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
+            btnGameplayOptions = new Button(font, "Spel opties", (btnGameplayOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
+            btnGraphicsOptions = new Button(font, "Grafische opties", (btnGraphicsOptions.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+            btnSoundOption = new Button(font, "Geluid opties", (btnSoundOption.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));
+            btnBack = new Button(font, "Terug", (btnBack.Hover(Mouse.GetState())) ? Color.Gray : Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 220));
 
             base.Update(theTime);
         }
