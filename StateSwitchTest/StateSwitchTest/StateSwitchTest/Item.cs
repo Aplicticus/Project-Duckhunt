@@ -8,7 +8,7 @@ using System.Text;
 
 namespace StateSwitchTest
 {
-    class Item
+    public class Item
     {
         protected ContentManager theContent;
         protected GraphicsDevice graphics;

@@ -9,7 +9,7 @@ using System.Text;
 
 namespace StateSwitchTest
 {
-    class MenuGameplayOptions : Screen
+    public class MenuGameplayOptions : Screen
     {
         private EventHandler<SwitchEventArgs> theScreenEvent;
         private GraphicsDeviceManager graphics;
@@ -77,6 +77,7 @@ namespace StateSwitchTest
 
             if (btnBack.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
             {
+                ReloadContent();
                 var method = theScreenEvent;
                 method(this, new SwitchEventArgs(3));
             }

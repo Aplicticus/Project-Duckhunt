@@ -10,7 +10,7 @@ using System.Text;
 
 namespace StateSwitchTest
 {
-    class MenuOptions : Screen
+    public class MenuOptions : Screen
     {
         public event EventHandler<SwitchEventArgs> theScreenEvent;
         private GraphicsDeviceManager graphics;

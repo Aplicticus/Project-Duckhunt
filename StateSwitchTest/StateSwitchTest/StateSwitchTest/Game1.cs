@@ -22,13 +22,13 @@ namespace StateSwitchTest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        MenuMain menuMain;
-        MenuGamemodeSelect menuGamemodeSelect;
-        MenuOptions menuOptions;
-        MenuGameplayOptions menuGameplayOptions;
-        MenuGraphicsOptions menuGraphicsOptions;
-        MenuSoundOptions menuSoundOptions;
-        Level level1;
+        public MenuMain menuMain;
+        public MenuGamemodeSelect menuGamemodeSelect;
+        public MenuOptions menuOptions;
+        public MenuGameplayOptions menuGameplayOptions;
+        public MenuGraphicsOptions menuGraphicsOptions;
+        public MenuSoundOptions menuSoundOptions;
+        public Level level1;
         Screen currentScreen;
         private Stateswitch stateswitch = Stateswitch.MAIN;
         public Difficulty difficulty;
@@ -40,6 +40,7 @@ namespace StateSwitchTest
             this.IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
+            Window.Title = "Dreamkeeper";
         }
 
         private enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS }
@@ -72,7 +73,7 @@ namespace StateSwitchTest
             menuGameplayOptions = new MenuGameplayOptions(Content, MenuGameplayOptionsEvent, graphics);
             menuGraphicsOptions = new MenuGraphicsOptions(Content, MenuGraphicsOptionsEvent, graphics);
             menuSoundOptions = new MenuSoundOptions(Content, MenuSoundOptionsEvent, graphics);
-            level1 = new Level(Content, LevelEvent, graphics, Difficulty.EASY);
+            level1 = new Level(Content, LevelEvent, graphics, Content.Load<Texture2D>("Level1"), Difficulty.EASY, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 2, new Vector2(-2, 0), Content, graphics.GraphicsDevice));
             currentScreen = menuMain;
 
             // TODO: use this.Content to load your game content here

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace StateSwitchTest
 {
-    class AnimatedSprite
+    public class AnimatedSprite
     {
         public Texture2D Texture { get; set; }
         public int Rows { get; private set; }

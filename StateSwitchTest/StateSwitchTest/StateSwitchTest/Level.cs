@@ -9,24 +9,27 @@ using System.Text;
 
 namespace StateSwitchTest
 {
-    class Level : Screen
+    public class Level : Screen
     {
         Difficulty difficulty;
+        Enemy startEnemy;
         Enemy enemy;
-        Texture2D txtr;
         ContentManager theContent;
         Ammonition ammo;
+        Texture2D background;
 
-        public Level(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics, Difficulty difficulty)
+        public Level(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics, Texture2D background, Difficulty difficulty, Enemy enemy)
             : base(theScreenEvent, graphics)
         {
             this.theContent = theContent;
             this.graphics = graphics;
             this.difficulty = difficulty;
             ammo = new Ammonition(theContent, graphics.GraphicsDevice, "Gravel", Ammonitions.GRAVEL);
+            this.background = background;
 
-            txtr = theContent.Load<Texture2D>("Bat");
-            enemy = new Enemy("Bat", txtr, new Vector2(graphics.PreferredBackBufferWidth, 100), 2, new Vector2(-2, 0), theContent);
+            startEnemy = enemy;
+            startEnemy.health *= (int)difficulty + 1;
+            this.enemy = new Enemy(startEnemy.name, startEnemy.rightTexture, startEnemy.leftTexture, startEnemy.position, startEnemy.health, startEnemy.velocity, theContent, graphics.GraphicsDevice);
         }
 
         public override void Update(GameTime theTime)
@@ -35,14 +38,13 @@ namespace StateSwitchTest
             enemy.Update(ammo);
 
             if (enemy.dead)
-            {
-                enemy = new Enemy("Bat", txtr, new Vector2(graphics.PreferredBackBufferWidth, 100), 2, new Vector2(-2, 0), theContent);
-            }
+                enemy = new Enemy(startEnemy.name, startEnemy.rightTexture, startEnemy.leftTexture, startEnemy.position, startEnemy.health, startEnemy.velocity, theContent, graphics.GraphicsDevice);
         }
 
         //Draw any objects specific to the screen
         public override void Draw(SpriteBatch theBatch)
         {
+            theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             enemy.Draw(theBatch);
             ammo.Draw(theBatch);
         }

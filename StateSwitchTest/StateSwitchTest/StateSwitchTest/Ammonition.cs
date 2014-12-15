@@ -11,18 +11,19 @@ namespace StateSwitchTest
 {
     public enum Ammonitions { GRAVEL, MUD, METAL, HOLYPELLET, MAGICPELLET }
     
-    class Ammonition : Item
+    public class Ammonition : Item
     {
         public Ammonitions ammo { get; set; }
         public int damage { get; private set; }
+        public Texture2D texture { get; private set; }
+        public Texture2D hitTexture { get; private set; }
+        public bool hit { get; private set; }
+        public bool enemyHit { get; set; }
+        public AnimatedSprite travelAnimation { get; private set; }
+        public AnimatedSprite hitAnimation { get; private set; }
+        public float scale { get; private set; }
+
         public Vector2 position;
-        public Texture2D texture;
-        public Texture2D hitTexture;
-        public bool hit;
-        public bool enemyHit;
-        public AnimatedSprite travelAnimation;
-        public AnimatedSprite hitAnimation;
-        public float scale;
         private bool falling;
         private int fallingTimer;
         private bool traveling;
@@ -122,10 +123,7 @@ namespace StateSwitchTest
                 else
                 {
                     scale -= 0.01f;
-                    if (position.X > graphics.Viewport.Width / 2)
-                        velocity.X += 1 / (distance.Y / distance.X) * 0.3f;
-                    else
-                        velocity.X -= 1 / (distance.Y / distance.X) * 0.3f;
+                    velocity.X += (position.X > graphics.Viewport.Width / 2) ? 1 / (distance.Y / distance.X) * 0.3f : -1 / (distance.Y / distance.X) * 0.3f;
                     velocity.Y += 0.3f;
                     position += velocity;
                     travelAnimation.Update();
