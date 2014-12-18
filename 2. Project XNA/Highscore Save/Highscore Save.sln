@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Highscore_Save", "Highscore Save\Highscore_Save\Highscore_Save.csproj", "{A3572139-A374-4D58-92D0-275A88988940}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Highscore_SaveContent", "Highscore Save\Highscore_SaveContent\Highscore_SaveContent.contentproj", "{DCB5C7FA-F26E-479E-A195-83D18B466F31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3572139-A374-4D58-92D0-275A88988940}.Debug|x86.ActiveCfg = Debug|x86
+		{A3572139-A374-4D58-92D0-275A88988940}.Debug|x86.Build.0 = Debug|x86
+		{A3572139-A374-4D58-92D0-275A88988940}.Release|x86.ActiveCfg = Release|x86
+		{A3572139-A374-4D58-92D0-275A88988940}.Release|x86.Build.0 = Release|x86
+		{DCB5C7FA-F26E-479E-A195-83D18B466F31}.Debug|x86.ActiveCfg = Debug|x86
+		{DCB5C7FA-F26E-479E-A195-83D18B466F31}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
