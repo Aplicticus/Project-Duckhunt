@@ -45,7 +45,7 @@ namespace Highscore_Save
         {
             // TODO: Add your initialization logic here
 
-            //string fullpath = Path.Combine("Highscore.dat");
+            
 
             base.Initialize();
         }

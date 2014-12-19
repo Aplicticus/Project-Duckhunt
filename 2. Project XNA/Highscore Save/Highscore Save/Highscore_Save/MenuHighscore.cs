@@ -65,7 +65,7 @@ namespace Highscore_Save
                 _highScores.Add(new HighScore() { Name = "Tommy", Score = 1337, Level = 1 });
                 CreateData();
             }
-
+            LoadData();
         }
 
         public override void Update(GameTime gameTime)
@@ -80,6 +80,8 @@ namespace Highscore_Save
 
             oldState = newState;
 
+            LoadData();
+
             base.Update(gameTime);
         }
         public override void Draw(SpriteBatch theBatch)
@@ -87,12 +89,17 @@ namespace Highscore_Save
             //Draw logic
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             btnBack.Draw(theBatch);
+
             LoadData();
+
+            theBatch.DrawString(font, "Name", new Vector2(100, 50) + enter * count, Color.Black);
+            theBatch.DrawString(font, "Score", new Vector2(300, 50) + enter * count, Color.Black);
+            theBatch.DrawString(font, "Level", new Vector2(500, 50) + enter * count, Color.Black);
             foreach (HighScore highscore in _highScores)
             {
-                Vector2 pos = new Vector2(100, 100);
-                pos += enter * count;
-                theBatch.DrawString(font, highscore.Name + "  " + highscore.Score + "  " + highscore.Level, pos, Color.Black);
+                theBatch.DrawString(font, highscore.Name, new Vector2(100, 100) + enter * count, Color.Black);
+                theBatch.DrawString(font, highscore.Score.ToString(), new Vector2(300, 100) + enter * count, Color.Black);
+                theBatch.DrawString(font, highscore.Level.ToString(), new Vector2(500, 100) + enter * count, Color.Black);
                 count++;
             }
             count = 0;
@@ -119,6 +126,7 @@ namespace Highscore_Save
         {
             _highScores.Add(new HighScore() { Name = name, Score = score, Level = level });
             var orderedScores = _highScores.OrderByDescending(s => s.Score);
+            _highScores = orderedScores.ToList();
             bestScore = orderedScores.FirstOrDefault();
             dataStream = File.Open(SavegamePath, FileMode.Open);
             XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
@@ -128,6 +136,7 @@ namespace Highscore_Save
         public void CreateData()
         {
             var orderedScores = _highScores.OrderByDescending(s => s.Score);
+            _highScores = orderedScores.ToList();
             bestScore = orderedScores.FirstOrDefault();
             dataStream = File.Create(SavegamePath);
             XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
@@ -139,7 +148,7 @@ namespace Highscore_Save
             _highScores.Clear();
             dataStream = File.Open(SavegamePath, FileMode.Open);
             XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
-            _highScores = serializer.Deserialize(dataStream) as List<HighScore>;
+            serializer.Serialize(dataStream, _highScores);
             dataStream.Close();
         }
     }
