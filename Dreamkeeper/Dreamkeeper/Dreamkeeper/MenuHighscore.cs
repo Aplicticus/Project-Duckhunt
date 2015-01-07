@@ -158,7 +158,7 @@ namespace Dreamkeeper
         }
         public void ClearData()
         {
-            //_highScores.Clear();
+            _highScores.Clear();
             //dataStream = File.Open(SavegamePath, FileMode.Open);
             //XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
             //serializer.Serialize(dataStream, _highScores);
