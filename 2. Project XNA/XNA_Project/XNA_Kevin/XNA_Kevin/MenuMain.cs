@@ -21,6 +21,7 @@ namespace XNA_Kevin
         private Texture2D background;
 
         private HUD allhud;
+        private LevelSelect alllevels;
         
         public MenuMain(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics)
             : base(theScreenEvent, graphics)
@@ -31,6 +32,9 @@ namespace XNA_Kevin
             allhud = new HUD(theContent);
             allhud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             //allhud.NextWeapon();
+
+            alllevels = new LevelSelect(theContent);
+            alllevels.Initialize(new Vector2((float)graphics.PreferredBackBufferWidth, (float)graphics.PreferredBackBufferHeight), graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             background = theContent.Load<Texture2D>("Assets\\Menus\\Mountains1");
             font = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
@@ -103,6 +107,9 @@ namespace XNA_Kevin
             //Draw logic
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             allhud.DrawHUDS(theBatch);
+
+            alllevels.DrawLevels(theBatch);
+
             
             base.Draw(theBatch);
         }

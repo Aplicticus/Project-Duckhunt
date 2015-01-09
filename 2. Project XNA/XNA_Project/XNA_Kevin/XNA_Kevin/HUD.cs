@@ -95,7 +95,7 @@ namespace XNA_Kevin
         {
             content = theContent;
         }
-        public HUD(Texture2D texture, float positionX, float positionY, float width, float height)
+        private HUD(Texture2D texture, float positionX, float positionY, float width, float height)
         {
             this.texture = texture;
             this.positionX = positionX;

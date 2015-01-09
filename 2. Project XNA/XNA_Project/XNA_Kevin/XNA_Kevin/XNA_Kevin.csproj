@@ -75,6 +75,7 @@
     <Compile Include="Button.cs" />
     <Compile Include="FloatRectangle.cs" />
     <Compile Include="HUD.cs" />
+    <Compile Include="LevelSelect.cs" />
     <Compile Include="MenuGamemodeSelect.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MenuGameplayOptions.cs" />
