@@ -21,8 +21,10 @@ namespace Dreamkeeper
         string score;
         int targetScore;
         EventHandler<SwitchEventArgs> theScreenEvent;
+        HUD hud;
+        private int time; // in seconds
 
-        public Level(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics, Texture2D background, Difficulty difficulty, Enemy enemy, int targetScore)
+        public Level(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics, Texture2D background, Difficulty difficulty, Enemy enemy, int targetScore, int time)
             : base(theScreenEvent, graphics)
         {
             this.theContent = theContent;
@@ -34,6 +36,7 @@ namespace Dreamkeeper
             score = "0";
             this.targetScore = targetScore;
             this.theScreenEvent = theScreenEvent;
+            this.time = time;
 
             startEnemy = enemy;
             startEnemy.health += (int)difficulty;
@@ -41,6 +44,9 @@ namespace Dreamkeeper
             this.enemy = new Enemy(startEnemy.name, startEnemy.rightTexture, startEnemy.leftTexture, startEnemy.position, startEnemy.health, startEnemy.velocity, theContent, graphics.GraphicsDevice);
 
             Program.game.player.AddItemToInventory(ammo);
+
+            hud = new HUD(theContent, graphics.GraphicsDevice);
+            hud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
         }
 
         public override void Update(GameTime theTime)
@@ -54,9 +60,11 @@ namespace Dreamkeeper
                 score = (int.Parse(score) + enemy.health * 100).ToString();
             }
             
-            if (int.Parse(score) >= targetScore)
+            if (hud.GetTimeState(time * 120))
             {
                 score = "0";
+                hud.timepointer.positionX = 3f;
+                hud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
                 var method = theScreenEvent;
                 method(this, new SwitchEventArgs((int)Program.game.stateswitch + 1));
             }
@@ -68,7 +76,8 @@ namespace Dreamkeeper
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             enemy.Draw(theBatch);
             ammo.Draw(theBatch);
-            theBatch.DrawString(font, score + " / " + targetScore, new Vector2(30, 30), Color.White);
+            hud.DrawHUD(theBatch);
+            theBatch.DrawString(font, score, new Vector2(graphics.PreferredBackBufferWidth / 10, graphics.PreferredBackBufferHeight / 1.2f), Color.Black);
         }
     }
 }

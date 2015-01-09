@@ -74,7 +74,7 @@ namespace Dreamkeeper
         {
             hit = false;
 
-            if (mouseState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released && !traveling && !falling)
+            if (mouseState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released && !traveling && !falling && mouseState.Y < graphics.Viewport.Height * 0.66f)
             {
                 destination = new Vector2(mouseState.X - (texture.Width / travelAnimation.Columns / 2 * scale), mouseState.Y - (texture.Height / travelAnimation.Rows / 2 * scale));
                 mouseClickDestination = new Vector2(mouseState.X, mouseState.Y);

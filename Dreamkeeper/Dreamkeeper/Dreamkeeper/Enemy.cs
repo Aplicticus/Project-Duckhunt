@@ -33,7 +33,7 @@ namespace Dreamkeeper
             this.health = health;
             this.velocity = new Vector2(velocity.X / 800 * graphics.Viewport.Width, velocity.Y);
             travelingAnimation = new AnimatedSprite(this.leftTexture, 3, 6);
-            this.position = new Vector2((new Random().Next(0, 2) == 0) ? -((travelingAnimation.Texture.Width / travelingAnimation.Columns) * ((1f / 800) * graphics.Viewport.Width)) : graphics.Viewport.Width, new Random().Next(0, graphics.Viewport.Height - 300));
+            this.position = new Vector2((new Random().Next(0, 2) == 0) ? -((travelingAnimation.Texture.Width / travelingAnimation.Columns) * ((1f / 800) * graphics.Viewport.Width)) : graphics.Viewport.Width, new Random().Next(0, (int)(graphics.Viewport.Height * 0.4f)));
             this.theContent = theContent;
             this.graphics = graphics;
 
