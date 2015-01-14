@@ -20,7 +20,7 @@ namespace XNA_Kevin
 
         private Texture2D background;
 
-        private HUD allhud;
+        //private HUD allhud;
         private LevelSelect alllevels;
         
         public MenuMain(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics)
@@ -29,13 +29,13 @@ namespace XNA_Kevin
             this.graphics = graphics;
             this.theScreenEvent = theScreenEvent;
 
-            allhud = new HUD(theContent);
-            allhud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            //allhud.NextWeapon();
+            //allhud = new HUD(theContent);
+            //allhud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            ////allhud.NextWeapon();
 
-            alllevels = new LevelSelect(theContent);
-            alllevels.Initialize(new Vector2((float)graphics.PreferredBackBufferWidth, (float)graphics.PreferredBackBufferHeight), graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
+            alllevels = new LevelSelect(theContent, graphics);
+            alllevels.Initialize();
+           
             background = theContent.Load<Texture2D>("Assets\\Menus\\Mountains1");
             font = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
            
@@ -51,47 +51,47 @@ namespace XNA_Kevin
             MouseState newState = Mouse.GetState();
             oldState = newState;
 
-            if (allhud.GetTimeState() == true)
-            {
-                // Message box  show ( Game over )....
-            }
+            //if (allhud.GetTimeState() == true)
+            //{
+            //    // Message box  show ( Game over )....
+            //}
 
-            if (Keyboard.GetState().IsKeyDown(Keys.D1))
-            {
-                if (countDown == 0)
-                    countDown = 1;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D2))
-            {
-                if (countUp == 0)
-                    countUp = 1;
-            }
-
-
-            if (Keyboard.GetState().IsKeyUp(Keys.D1))
-            {
-                if (countDown == 1)
-                    countDown = 2;
-            }
-            if (Keyboard.GetState().IsKeyUp(Keys.D2))
-            {
-                if (countUp == 1)
-                    countUp = 2;
-            }
+            //if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            //{
+            //    if (countDown == 0)
+            //        countDown = 1;
+            //}
+            //if (Keyboard.GetState().IsKeyDown(Keys.D2))
+            //{
+            //    if (countUp == 0)
+            //        countUp = 1;
+            //}
 
 
+            //if (Keyboard.GetState().IsKeyUp(Keys.D1))
+            //{
+            //    if (countDown == 1)
+            //        countDown = 2;
+            //}
+            //if (Keyboard.GetState().IsKeyUp(Keys.D2))
+            //{
+            //    if (countUp == 1)
+            //        countUp = 2;
+            //}
 
-            if (countDown == 2)
-            {
-                allhud.NextWeapon();
-                countDown = 0;
-            }
 
-            if (countUp == 2)
-            {
-                allhud.LastWeapon();
-                countUp = 0;
-            }
+
+            //if (countDown == 2)
+            //{
+            //    allhud.NextWeapon();
+            //    countDown = 0;
+            //}
+
+            //if (countUp == 2)
+            //{
+            //    allhud.LastWeapon();
+            //    countUp = 0;
+            //}
 
             
           
@@ -106,7 +106,7 @@ namespace XNA_Kevin
         {
             //Draw logic
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
-            allhud.DrawHUDS(theBatch);
+            //allhud.DrawHUDS(theBatch);
 
             alllevels.DrawLevels(theBatch);
 
