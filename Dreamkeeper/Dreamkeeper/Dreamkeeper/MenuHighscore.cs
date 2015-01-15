@@ -15,14 +15,9 @@ namespace Dreamkeeper
     public class MenuHighscore : Screen
     {
         public EventHandler<SwitchEventArgs> theScreenEvent;
-        public GraphicsDeviceManager graphics;
-
         public SpriteFont font;
-
         public Texture2D background;
-
         private MouseState oldState;
-
         private Button btnBack;
         private Button btnClear;
 

@@ -45,12 +45,8 @@ namespace Dreamkeeper
         private float ammoswapHeight = 6f;
 
         // Header Positions
-        private float scorePositionX = 95f;
-        private float scorePositionY = 95f;
         private float timelinePositionX = 3f;
-        private float timelinePositionY = 95f;
         private float timepointerPositionX = 3f;
-        private float timepointerPositionY = 7f;
         private float ammoswapPositionX = 95f;
         private float ammoswapPositionY = 1.25f;
         
@@ -129,11 +125,6 @@ namespace Dreamkeeper
             timepointer.Draw(theBatch);
             //ammoswap.Draw(theBatch);
         }
-        public void DrawSprites(SpriteBatch theBatch)
-        {
-
-        }
-                
         // Timeline Method
         public bool GetTimeState(int levelTime)
         {

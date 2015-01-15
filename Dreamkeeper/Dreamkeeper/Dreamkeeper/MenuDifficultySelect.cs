@@ -12,14 +12,9 @@ namespace Dreamkeeper
     public class MenuDifficultySelect : Screen
     {
         private EventHandler<SwitchEventArgs> theScreenEvent;
-        private GraphicsDeviceManager graphics;
-
         private MouseState oldState;
-
         private SpriteFont font;
-
         private Texture2D background;
-
         private Button btnEasy;
         private Button btnMedium;
         private Button btnHard;
@@ -31,9 +26,7 @@ namespace Dreamkeeper
             this.graphics = graphics;
             this.theScreenEvent = theScreenEvent;
             background = theContent.Load<Texture2D>("Mountains4");
-
-            font = theContent.Load<SpriteFont>("MenuFont");
-            
+            font = theContent.Load<SpriteFont>("MenuFont");            
             btnEasy = new Button(font, "Makkelijk", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnMedium = new Button(font, "Normaal", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
             btnHard = new Button(font, "Moeilijk", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 180));

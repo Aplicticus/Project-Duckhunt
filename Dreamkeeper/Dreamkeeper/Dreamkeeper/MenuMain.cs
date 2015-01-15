@@ -12,14 +12,9 @@ namespace Dreamkeeper
     public class MenuMain : Screen
     {
         private EventHandler<SwitchEventArgs> theScreenEvent;
-        private GraphicsDeviceManager graphics;
-
         private MouseState oldState;
-
         private SpriteFont font;
-
         private Texture2D background;
-
         private Button btnPlay;
         private Button btnHighscore;
         private Button btnOptions;

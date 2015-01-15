@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace XNA_Kevin
+namespace Dreamkeeper
 {
-    public class LevelSelect
+    class LevelSelect
     {           
          // btns[0] and btns[1] are Borders, use btns[2] to start with level 1         
         #region Variables
@@ -22,7 +22,7 @@ namespace XNA_Kevin
 
         // Array & Lists
         private Texture2D[] textures = new Texture2D[15];        
-        List<Button> btns = new List<Button>();
+        public List<Button> btns = new List<Button>();
         private List<Vector2> vectors = new List<Vector2>();
        
         // Width & Height   

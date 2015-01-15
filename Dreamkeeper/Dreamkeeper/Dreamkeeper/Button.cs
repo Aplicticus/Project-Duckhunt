@@ -21,9 +21,10 @@ namespace Dreamkeeper
         public int width { get; internal set; }
         public int height { get; internal set; }
 
-        public Button(Texture2D txtr, Rectangle rect)
+        public Button(Texture2D txtr, Rectangle rect, Color clr)
         {
             texture = txtr;
+            color = clr;
             positionX = rect.X;
             positionY = rect.Y;
             width = rect.Width;

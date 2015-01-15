@@ -81,6 +81,7 @@
     <Compile Include="HUD.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelSelect.cs" />
     <Compile Include="MenuDifficultySelect.cs" />
     <Compile Include="MenuGamemodeSelect.cs" />
     <Compile Include="MenuGameplayOptions.cs" />
