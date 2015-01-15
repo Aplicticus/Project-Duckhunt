@@ -34,7 +34,6 @@ namespace XNA_Kevin
             ////allhud.NextWeapon();
 
             alllevels = new LevelSelect(theContent, graphics);
-            alllevels.Initialize();
            
             background = theContent.Load<Texture2D>("Assets\\Menus\\Mountains1");
             font = theContent.Load<SpriteFont>("Assets\\Menus\\MenuFont");
@@ -42,59 +41,12 @@ namespace XNA_Kevin
 
            }
 
-        int countDown = 0;
-        int countUp = 0;
 
         public override void Update(GameTime theTime)
         {
             //Update logic
             MouseState newState = Mouse.GetState();
             oldState = newState;
-
-            //if (allhud.GetTimeState() == true)
-            //{
-            //    // Message box  show ( Game over )....
-            //}
-
-            //if (Keyboard.GetState().IsKeyDown(Keys.D1))
-            //{
-            //    if (countDown == 0)
-            //        countDown = 1;
-            //}
-            //if (Keyboard.GetState().IsKeyDown(Keys.D2))
-            //{
-            //    if (countUp == 0)
-            //        countUp = 1;
-            //}
-
-
-            //if (Keyboard.GetState().IsKeyUp(Keys.D1))
-            //{
-            //    if (countDown == 1)
-            //        countDown = 2;
-            //}
-            //if (Keyboard.GetState().IsKeyUp(Keys.D2))
-            //{
-            //    if (countUp == 1)
-            //        countUp = 2;
-            //}
-
-
-
-            //if (countDown == 2)
-            //{
-            //    allhud.NextWeapon();
-            //    countDown = 0;
-            //}
-
-            //if (countUp == 2)
-            //{
-            //    allhud.LastWeapon();
-            //    countUp = 0;
-            //}
-
-            
-          
 
 
 
@@ -109,6 +61,7 @@ namespace XNA_Kevin
             //allhud.DrawHUDS(theBatch);
 
             alllevels.DrawLevels(theBatch);
+            
 
             
             base.Draw(theBatch);
