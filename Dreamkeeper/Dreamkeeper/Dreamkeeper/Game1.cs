@@ -16,7 +16,7 @@ namespace Dreamkeeper
     /// </summary>
 
     public enum Difficulty { EASY, MEDIUM, HARD }
-    public enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10 }
+    public enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVELSELECT, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10 }
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -33,6 +33,7 @@ namespace Dreamkeeper
         public MenuSoundOptions menuSoundOptions;
         public MenuDifficultySelect menuDifficultySelect;
         public MenuHighscore menuHighscore;
+        public LevelSelect levelselect;
         public Level level1;
         public Level level2;
         public Level level3;
@@ -90,6 +91,7 @@ namespace Dreamkeeper
             menuSoundOptions = new MenuSoundOptions(Content, MenuSwitchEvent, graphics);
             menuDifficultySelect = new MenuDifficultySelect(Content, MenuSwitchEvent, graphics);
             menuHighscore = new MenuHighscore(Content, MenuSwitchEvent, graphics);
+            levelselect = new LevelSelect(Content, MenuSwitchEvent, graphics);
             level1 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level1"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 1, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             level2 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level2Wip"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 2, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             level3 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level3Wip"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 3, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
@@ -191,6 +193,9 @@ namespace Dreamkeeper
                     break;
                 case Stateswitch.DIFFICULTY:
                     currentScreen = menuDifficultySelect;
+                    break;
+                case Stateswitch.LEVELSELECT:
+                    currentScreen = levelselect;
                     break;
                 case Stateswitch.LEVEL1:
                     currentScreen = level1;

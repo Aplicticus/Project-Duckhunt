@@ -2,18 +2,20 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Dreamkeeper
 {
-    class LevelSelect
+    public class LevelSelect : Screen
     {           
          // btns[0] and btns[1] are Borders, use btns[2] to start with level 1         
         #region Variables
         // Global Variables
+        private EventHandler<SwitchEventArgs> theScreenEvent;
+        private MouseState oldState;
         private ContentManager content;
-        private GraphicsDeviceManager graphics;
-        private Texture2D texture { get; set; }
+        private Texture2D background { get; set; }
 
         // position, width, height
         private Vector2 position;
@@ -22,7 +24,7 @@ namespace Dreamkeeper
 
         // Array & Lists
         private Texture2D[] textures = new Texture2D[15];        
-        public List<Button> btns = new List<Button>();
+        List<Button> btns = new List<Button>();
         private List<Vector2> vectors = new List<Vector2>();
        
         // Width & Height   
@@ -35,12 +37,16 @@ namespace Dreamkeeper
         #endregion
 
         #region Constructors
-        public LevelSelect(ContentManager content, GraphicsDeviceManager graphics)
+        public LevelSelect(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics)
+            : base (theScreenEvent, graphics)
         {
-            this.content = content;
+            this.content = theContent;
             this.graphics = graphics;
+            this.theScreenEvent = theScreenEvent;
+            background = theContent.Load<Texture2D>("Mountains4");
             Initialize();
-        }        
+
+        }                     
         #endregion
 
         #region Initialize
@@ -80,8 +86,8 @@ namespace Dreamkeeper
         #region Load Content
         private void LoadContent()
         {
-            textures[0] = content.Load<Texture2D>("Assets\\Global\\Sprites\\missingTextureWhite"); // Global Border
-            textures[1] = content.Load<Texture2D>("Assets\\Global\\Sprites\\missingTextureBlack"); // Global
+            textures[0] = content.Load<Texture2D>("missingTextureWhite"); // Global Border
+            textures[1] = content.Load<Texture2D>("missingTextureBlack"); // Global
             textures[2] = content.Load<Texture2D>("level1"); // Level 1
             textures[3] = content.Load<Texture2D>("level2wip"); // Level 2
             textures[4] = content.Load<Texture2D>("level3wip"); // Level 3
@@ -91,6 +97,227 @@ namespace Dreamkeeper
             textures[8] = content.Load<Texture2D>("level7wip"); // Level 7
             textures[9] = content.Load<Texture2D>("level8wip"); // Level 8
             textures[10] = content.Load<Texture2D>("level9wip"); // Level 9
+        }
+        #endregion
+
+        #region Update
+        public override void Update(GameTime theTime)
+        {
+            //Update logic
+            MouseState newState = Mouse.GetState();
+
+
+            // Need to be Optimalised with 3 switch cases : Easy, Medium and Hard
+            // Level 1
+            if (btns[2].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+            }
+            else if (btns[2].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+            }
+            else if (btns[2].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+            }
+
+            // Level 2
+            if (btns[3].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
+            }
+            else if (btns[3].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
+            }
+            else if (btns[3].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
+            }
+
+            // Level 3
+            if (btns[4].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
+            }
+            else if (btns[4].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
+            }
+            else if (btns[4].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
+            }
+            
+            // Level 4
+            if (btns[5].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
+            }
+            else if (btns[5].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
+            }
+            else if (btns[5].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
+            }
+
+            // Level 5
+            if (btns[6].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
+            }
+            else if (btns[6].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
+            }
+            else if (btns[6].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
+            }
+
+            // Level 6
+            if (btns[7].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
+            }
+            else if (btns[7].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
+            }
+            else if (btns[7].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
+            }
+
+            // Level 7
+            if (btns[8].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
+            }
+            else if (btns[8].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
+            }
+            else if (btns[8].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
+            }
+
+            // Level 8
+            if (btns[9].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
+            }
+            else if (btns[9].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
+            }
+            else if (btns[9].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
+            }
+
+            // Level 9
+            if (btns[10].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
+            {
+                Program.game.difficulty = Difficulty.EASY;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
+            }
+            else if (btns[10].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
+            {
+                Program.game.difficulty = Difficulty.MEDIUM;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
+            }
+            else if (btns[10].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
+            {
+                Program.game.difficulty = Difficulty.HARD;
+                ReloadContent();
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
+            }
+
+
+
+            oldState = newState;
         }
         #endregion
 
@@ -116,17 +343,25 @@ namespace Dreamkeeper
         #endregion  
 
         #region Draw Methods
-        private void Draw(SpriteBatch theBatch)
+        private void DrawLevels(SpriteBatch theBatch)
         {
-                theBatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height), Color.White);         
+            theBatch.Draw(background, new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height), Color.White);         
         }
        
-        public void DrawLevels(SpriteBatch theBatch)
+        public override void Draw(SpriteBatch theBatch)
         {
+            
+
+            //Draw logic
+            theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
+
             foreach (Button button in btns)
             {
                 button.Draw(theBatch);
             }
+
+            base.Draw(theBatch);
+
         }
         #endregion
     }

@@ -43,7 +43,7 @@ namespace Dreamkeeper
                 Program.game.difficulty = Difficulty.EASY;
                 ReloadContent();
                 var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVELSELECT));
             }
 
             if (btnMedium.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
@@ -51,7 +51,7 @@ namespace Dreamkeeper
                 Program.game.difficulty = Difficulty.MEDIUM;
                 ReloadContent();
                 var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVELSELECT));
             }
 
             if (btnHard.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
@@ -59,7 +59,7 @@ namespace Dreamkeeper
                 Program.game.difficulty = Difficulty.HARD;
                 ReloadContent();
                 var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVELSELECT));
             }
 
             if (btnBack.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
