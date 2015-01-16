@@ -67,8 +67,6 @@ namespace Dreamkeeper
             vectors.Add(new Vector2(vectors[1].X / 0.337f, vectors[1].Y / 0.206f)); // Vector 9, level 8
             vectors.Add(new Vector2(vectors[1].X / 0.208f, vectors[1].Y / 0.206f)); // Vector 10, level 9
 
-            // (btnStory.Hover(Mouse.GetState())) ? Color.Gray : Color.Black
-
             btns.Add(new Button(textures[0], new Rectangle((int)vectors[0].X, (int)vectors[0].Y, (int)globalBorderWidth, (int)globalBorderHeight), Color.White)); // Global Border
             btns.Add(new Button(textures[1], new Rectangle((int)vectors[1].X, (int)vectors[1].Y, (int)globalWidth, (int)globalHeight), Color.White)); // Global
             btns.Add(new Button(textures[2], new Rectangle((int)vectors[2].X, (int)vectors[2].Y, (int)levelWidth, (int)levelHeight), Color.White)); // Level 1
@@ -103,222 +101,77 @@ namespace Dreamkeeper
         #region Update
         public override void Update(GameTime theTime)
         {
-            //Update logic
-            MouseState newState = Mouse.GetState();
-
-
-            // Need to be Optimalised with 3 switch cases : Easy, Medium and Hard
-            // Level 1
-            if (btns[2].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
-            }
-            else if (btns[2].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
-            }
-            else if (btns[2].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
-            }
-
-            // Level 2
-            if (btns[3].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
-            }
-            else if (btns[3].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
-            }
-            else if (btns[3].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
-            }
-
-            // Level 3
-            if (btns[4].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
-            }
-            else if (btns[4].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
-            }
-            else if (btns[4].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
-            }
-            
-            // Level 4
-            if (btns[5].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
-            }
-            else if (btns[5].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
-            }
-            else if (btns[5].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
-            }
-
-            // Level 5
-            if (btns[6].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
-            }
-            else if (btns[6].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
-            }
-            else if (btns[6].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
-            }
-
-            // Level 6
-            if (btns[7].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
-            }
-            else if (btns[7].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
-            }
-            else if (btns[7].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
-            }
-
-            // Level 7
-            if (btns[8].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
-            }
-            else if (btns[8].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
-            }
-            else if (btns[8].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
-            }
-
-            // Level 8
-            if (btns[9].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
-            }
-            else if (btns[9].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
-            }
-            else if (btns[9].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
-            }
-
-            // Level 9
-            if (btns[10].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.EASY)
-            {
-                Program.game.difficulty = Difficulty.EASY;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
-            }
-            else if (btns[10].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.MEDIUM)
-            {
-                Program.game.difficulty = Difficulty.MEDIUM;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
-            }
-            else if (btns[10].IsClicked(newState) && oldState.LeftButton == ButtonState.Released && Program.game.difficulty == Difficulty.HARD)
-            {
-                Program.game.difficulty = Difficulty.HARD;
-                ReloadContent();
-                var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
-            }
-
-
-
-            oldState = newState;
+            //Update logic          
+            switch(Program.game.difficulty)
+            {                
+                case Difficulty.EASY:
+                    ClickOnLevel(Mouse.GetState());
+                    break;
+                case Difficulty.MEDIUM:
+                    ClickOnLevel(Mouse.GetState());
+                    break;
+                case Difficulty.HARD:
+                    ClickOnLevel(Mouse.GetState());
+                    break;
+                default:
+                    break;
+            }         
         }
+        private void GetClickedLevel(int level)
+        {
+            var method = theScreenEvent;
+            switch (level)
+            {
+                case 2:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+                    break;
+                case 3:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
+                    break;
+                case 4:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
+                    break;
+                case 5:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
+                    break;
+                case 6:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
+                    break;
+                case 7:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
+                    break;
+                case 8:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
+                    break;
+                case 9:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
+                    break;
+                case 10:
+                    ReloadContent();
+                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void ClickOnLevel(MouseState newState)
+        {
+            for (int i = 2; i < btns.Count; i++)
+            {
+                if (btns[i].IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
+                {
+                    GetClickedLevel(i);
+                }
+            }
+        }       
         #endregion
 
         #region Calculate
