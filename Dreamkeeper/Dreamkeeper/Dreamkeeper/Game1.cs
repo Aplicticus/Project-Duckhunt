@@ -18,12 +18,15 @@ namespace Dreamkeeper
     public enum Difficulty { EASY, MEDIUM, HARD }
     public enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVELSELECT, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10 }
 
+    
+
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         public Player player;
+        
 
         public MenuMain menuMain;
         public MenuGamemodeSelect menuGamemodeSelect;
@@ -129,6 +132,8 @@ namespace Dreamkeeper
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+            
 
             base.Update(gameTime);
         }
