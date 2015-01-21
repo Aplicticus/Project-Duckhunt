@@ -39,7 +39,6 @@ namespace Dreamkeeper
         public Intro intro1_1, intro1_2, intro2_1, intro2_2, intro3_1, intro3_2, intro4_1, intro4_2, intro5_1, intro5_2, intro6_1, intro6_2, intro7_1, intro7_2, intro8_1, intro8_2, intro9_1, intro9_2, intro10_1, intro10_2;
         public Level level1, level2, level3, level4, level5, level6, level7, level8, level9, level10;
         Screen currentScreen;
-        Screen oldcurrentScreen;
         public Stateswitch stateswitch = Stateswitch.MAIN;
         public Stateswitch oldStateswitch;
         public Difficulty difficulty;
