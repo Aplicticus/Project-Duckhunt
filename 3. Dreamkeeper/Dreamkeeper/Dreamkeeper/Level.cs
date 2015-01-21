@@ -18,7 +18,7 @@ namespace Dreamkeeper
         Ammonition ammo;
         Texture2D background;
         SpriteFont font;
-        string score;
+        int score;
         int targetScore;
         EventHandler<SwitchEventArgs> theScreenEvent;
         HUD hud;
@@ -33,7 +33,7 @@ namespace Dreamkeeper
             ammo = new Ammonition(theContent, graphics.GraphicsDevice, "Gravel", Ammonitions.GRAVEL);
             this.background = background;
             font = theContent.Load<SpriteFont>("MenuFont");
-            score = "0";
+            score = 0;
             this.targetScore = targetScore;
             this.theScreenEvent = theScreenEvent;
             this.time = time;
@@ -54,15 +54,16 @@ namespace Dreamkeeper
             ammo.Update(Mouse.GetState());
             enemy.Update(ammo);
 
-            if (enemy.dead && (int.Parse(score) != targetScore))
+            if (enemy.dead)
             {
                 enemy = new Enemy(startEnemy.name, startEnemy.rightTexture, startEnemy.leftTexture, startEnemy.position, startEnemy.health, startEnemy.velocity, theContent, graphics.GraphicsDevice);
-                score = (int.Parse(score) + enemy.health * 100).ToString();
+                score = score + (enemy.health * 100);
             }
-            
-            if (hud.GetTimeState(time * 120))
+
+            if (hud.GetTimeState(time * 120) || score >= targetScore)
             {
-                score = "0";
+                Program.game.score += score;
+                score = 0;
                 hud.timepointer.positionX = 3f;
                 hud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
                 var method = theScreenEvent;
@@ -77,7 +78,7 @@ namespace Dreamkeeper
             enemy.Draw(theBatch);
             ammo.Draw(theBatch);
             hud.DrawHUD(theBatch);
-            theBatch.DrawString(font, score, new Vector2(graphics.PreferredBackBufferWidth / 10, graphics.PreferredBackBufferHeight / 1.2f), Color.Black);
+            theBatch.DrawString(font, score.ToString(), new Vector2(graphics.PreferredBackBufferWidth / 10, graphics.PreferredBackBufferHeight / 1.2f), Color.Black);
         }
     }
 }

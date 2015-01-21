@@ -124,39 +124,39 @@ namespace Dreamkeeper
             {
                 case 2:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL1));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO1_1));
                     break;
                 case 3:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL2));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO2_1));
                     break;
                 case 4:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL3));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO3_1));
                     break;
                 case 5:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL4));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO4_1));
                     break;
                 case 6:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL5));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO5_1));
                     break;
                 case 7:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL6));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO6_1));
                     break;
                 case 8:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL7));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO7_1));
                     break;
                 case 9:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL8));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO8_1));
                     break;
                 case 10:
                     ReloadContent();
-                    method(this, new SwitchEventArgs((int)Stateswitch.LEVEL9));
+                    method(this, new SwitchEventArgs((int)Stateswitch.INTRO9_1));
                     break;
                 default:
                     break;
