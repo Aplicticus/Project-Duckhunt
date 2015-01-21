@@ -14,11 +14,19 @@ namespace XNA_Rudy
         public Boolean useWiimote1 = true;
         public Boolean useWiimote2 = false;
         public Wiimote wiiM1 = new Wiimote();
+       
         //public Wiimote wiiM2;
  
         Microsoft.Xna.Framework.Point IRPoint1 = new Microsoft.Xna.Framework.Point(0, 0);
         Microsoft.Xna.Framework.Point IRPoint2 = new Microsoft.Xna.Framework.Point(0, 0);
         Microsoft.Xna.Framework.Point IRPointMidpoint = new Microsoft.Xna.Framework.Point(0, 0);
+
+        float x0Old;
+        float y0Old;
+        float x1Old;
+        float y1Old;
+        float midXOld;
+        float midYOld;
 
 
         public Controller()
@@ -27,10 +35,6 @@ namespace XNA_Rudy
             {
                 InitWiimote(wiiM1);
             }
-            //else if (useWiimote2)
-            //{
-            //    InitWiimote(wiiM2);
-            //}
         }
 
         public void InitWiimote(Wiimote wm)
@@ -44,6 +48,7 @@ namespace XNA_Rudy
                     wm.Connect();
                     wm.SetReportType(InputReport.ButtonsAccel, true);
                     wm.SetReportType(InputReport.IRExtensionAccel, true);
+                    wm.SetReportType(InputReport.IRAccel, true);
                     wm.WiimoteState.IRState.Mode = IRMode.Extended;
                     connected = true;
                 }
@@ -55,20 +60,14 @@ namespace XNA_Rudy
 
             wm.SetLEDs(true, true, false, false);
 
+            Process ExternalProcess = new Process();
+            ExternalProcess.StartInfo.FileName = "WiinRemote.exe";
+            ExternalProcess.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            ExternalProcess.Start();
+            ExternalProcess.WaitForExit();
+
+
             BurstRumble(wm, 150);
-        }
-
-        public void BurstRumble(Wiimote wm, int burstTime)
-        {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-
-            while (stopWatch.ElapsedMilliseconds <= burstTime)
-            {
-                wm.SetRumble(true);
-            }
-            wm.SetRumble(false);
-            stopWatch.Stop();
         }
 
         public string GetPressedButton(Wiimote wm)
@@ -135,30 +134,65 @@ namespace XNA_Rudy
         {
             return new Vector2(wm.WiimoteState.IRState.RawMidpoint.X, wm.WiimoteState.IRState.RawMidpoint.Y);
         }
-        
-        public Vector2 GetIRX(Wiimote wm, Vector2 oldVector)
+
+        public Wiimote GetWiimote(Wiimote wm)
         {
-            float xPercent;
-            float yPercent;
-
-            if(wm.WiimoteState.IRState.IRSensors[1].Position.X >= 1)
-                xPercent = 1;            
-            else
-                xPercent = wm.WiimoteState.IRState.IRSensors[1].Position.X;
-           
-            if (wm.WiimoteState.IRState.IRSensors[1].Position.Y >= 1)
-                yPercent = 1;
-            else
-                yPercent = wm.WiimoteState.IRState.IRSensors[1].Position.Y;
-
-            return new Vector2(xPercent, yPercent) * oldVector;
-
+            return wm;
         }
+        
 
-        public Vector2 GetPos(Wiimote wm, GraphicsDeviceManager graphics)
+        public Vector2 GetPos0(Wiimote wm, GraphicsDeviceManager graphics)
         {
             Vector2 pos;
+
+            float x0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.X;
+            float y0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.Y;
+            float x1 = wm.WiimoteState.IRState.IRSensors[1].RawPosition.X;
+            float y1 = wm.WiimoteState.IRState.IRSensors[1].RawPosition.Y;
+            float midx = wm.WiimoteState.IRState.Midpoint.X;
+            float midy = wm.WiimoteState.IRState.Midpoint.Y;
             
+            if (x0 != 1023)
+            {
+                x0Old = x0;
+            }
+            if (y0 != 768)
+            {
+                y0Old = y0;
+            }
+            if (x1 != 1023)
+            {
+                x1Old = x1;
+            }
+            if (y1 != 1023)
+            {
+                y1Old = y1;
+            }
+            if (midx != 1023)
+            {
+                midXOld = x0;
+            }
+            if (midy != 1023)
+            {
+                midYOld = x0;
+            }
+            
+            float xTest = (((1023 - x0Old) / 1023) * graphics.PreferredBackBufferWidth);
+            float yTest = ((1-(768 - y0Old) / 768)) * graphics.PreferredBackBufferHeight;
+
+            //float x = (1 - ((x0Old + x1Old) * midXOld)) * 1024 * graphics.PreferredBackBufferWidth;
+            //float y = (((y0Old + y1Old) * midYOld) / 768) * graphics.PreferredBackBufferHeight;
+
+            pos.X = xTest;
+            pos.Y = yTest;
+
+            return pos;
+        }
+
+        public Vector2 GetPos1(Wiimote wm, GraphicsDeviceManager graphics)
+        {
+            Vector2 pos;
+
             float x0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.X;
             float y0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.Y;
             float x1 = wm.WiimoteState.IRState.IRSensors[1].RawPosition.X;
@@ -166,15 +200,74 @@ namespace XNA_Rudy
             float midx = wm.WiimoteState.IRState.Midpoint.X;
             float midy = wm.WiimoteState.IRState.Midpoint.Y;
 
-            float x = (1 - ((x0 + x1) * midx) / 1024) * graphics.PreferredBackBufferWidth;
-            float y = (((y0 + y1) * midy) / 768) * graphics.PreferredBackBufferHeight;
+            
+            if (x1 != 1023)
+            {
+                x1Old = x1;
+            }
+            if (y1 != 768)
+            {
+                y1Old = y1;
+            }
+          
 
-            pos.X = x;
-            pos.Y = y;
+            float xTest = (((1023 - x1Old) / 1023) * graphics.PreferredBackBufferWidth);
+            float yTest = ((1 - (768 - y1Old) / 768)) * graphics.PreferredBackBufferHeight;
+
+            //float x = (1 - ((x0Old + x1Old) * midXOld)) * 1024 * graphics.PreferredBackBufferWidth;
+            //float y = (((y0Old + y1Old) * midYOld) / 768) * graphics.PreferredBackBufferHeight;
+
+            pos.X = xTest;
+            pos.Y = yTest;
 
             return pos;
         }
 
+        public Vector2 GetPosM(Wiimote wm, GraphicsDeviceManager graphics)
+        {
+            Vector2 pos;
 
+            float x0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.X;
+            float y0 = wm.WiimoteState.IRState.IRSensors[0].RawPosition.Y;
+            float x1 = wm.WiimoteState.IRState.IRSensors[1].RawPosition.X;
+            float y1 = wm.WiimoteState.IRState.IRSensors[1].RawPosition.Y;
+            float midx = wm.WiimoteState.IRState.Midpoint.X;
+            float midy = wm.WiimoteState.IRState.Midpoint.Y;
+
+           
+            if (midx != 1023)
+            {
+                midXOld = midx;
+            }
+            if (midy != 768)
+            {
+                midYOld = midx;
+            }
+            
+
+            float xTest = (((1023 - midXOld) / 1023) * graphics.PreferredBackBufferWidth);
+            float yTest = ((1 - (768 - midYOld) / 768)) * graphics.PreferredBackBufferHeight;
+
+            //float x = (1 - ((x0Old + x1Old) * midXOld)) * 1024 * graphics.PreferredBackBufferWidth;
+            //float y = (((y0Old + y1Old) * midYOld) / 768) * graphics.PreferredBackBufferHeight;
+
+            pos.X = xTest;
+            pos.Y = yTest;
+
+            return pos;
+        }
+
+        public void BurstRumble(Wiimote wm, int burstTime)
+        {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            while (stopWatch.ElapsedMilliseconds <= burstTime)
+            {
+                wm.SetRumble(true);
+            }
+            wm.SetRumble(false);
+            stopWatch.Stop();
+        }
     }
 }

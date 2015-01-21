@@ -31,6 +31,7 @@ namespace XNA_Rudy
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 768;
             graphics.PreferredBackBufferWidth = 1377;
+            IsMouseVisible = true;
         }
 
         /// <summary>
@@ -104,17 +105,19 @@ namespace XNA_Rudy
             spriteBatch.DrawString(spriteFont, "IR Values0" + controller.GetIRResultsS1(controller.wiiM1).ToString(), new Vector2(10, 50), Color.Black);
             spriteBatch.DrawString(spriteFont, "IR Values1" + controller.GetIRResultsS2(controller.wiiM1).ToString(), new Vector2(10, 100), Color.Black);
             spriteBatch.DrawString(spriteFont, "IR ValuesM" + controller.GetIRResultsMidpoint(controller.wiiM1).ToString(), new Vector2(10, 150), Color.Black);
+            spriteBatch.DrawString(spriteFont, "yTest Values" + controller.GetPos0(controller.wiiM1, graphics).Y.ToString(), new Vector2(10, 250), Color.Black);
             spriteBatch.DrawString(spriteFont, "Pressed button: " + controller.GetPressedButton(controller.wiiM1), new Vector2(10, 200), Color.Black);
+            
+            spriteBatch.DrawString(spriteFont, "IR Size" + controller.GetWiimote(controller.wiiM1).WiimoteState.IRState.IRSensors[0].Size.ToString(), new Vector2(10, 300), Color.Black);
 
-            if (controller.GetPos(controller.wiiM1, graphics) != new Vector2(1023, 1023))
+            /*if(controller.GetPos0(controller.GetPos0(controller.wiiM1, graphics).X <= controller.GetPos0(controller.wiiM1, graphics).X / 2)
             {
-                spriteBatch.Draw(crosshair, controller.GetPos(controller.wiiM1, graphics), null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
-                currPos = controller.GetPos(controller.wiiM1, graphics);
-            }
-            else
-            {
-                spriteBatch.Draw(crosshair, currPos, null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
-            }
+
+            }*/
+            spriteBatch.Draw(crosshair, controller.GetPos0(controller.wiiM1, graphics), null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(crosshair, controller.GetPos1(controller.wiiM1, graphics), null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(crosshair, controller.GetPosM(controller.wiiM1, graphics), null, Color.Black, 0.0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0.0f);
+           
             spriteBatch.End();
 
  
