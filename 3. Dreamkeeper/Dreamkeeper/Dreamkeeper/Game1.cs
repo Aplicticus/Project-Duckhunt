@@ -16,7 +16,7 @@ namespace Dreamkeeper
     /// </summary>
 
     public enum Difficulty { EASY, MEDIUM, HARD }
-    public enum Stateswitch { INTRO, MAIN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVELSELECT, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10 }
+    public enum Stateswitch { INTRO, MAIN,PAUSESCREEN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVELSELECT, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10 }
 
     
 
@@ -37,6 +37,7 @@ namespace Dreamkeeper
         public MenuDifficultySelect menuDifficultySelect;
         public MenuHighscore menuHighscore;
         public LevelSelect levelselect;
+        public PauseScreen pauseScreen;
         public Level level1;
         public Level level2;
         public Level level3;
@@ -48,8 +49,14 @@ namespace Dreamkeeper
         public Level level9;
         public Level level10;
         Screen currentScreen;
+        Screen oldcurrentScreen;
         public Stateswitch stateswitch = Stateswitch.MAIN;
+        public Stateswitch oldStateswitch;
         public Difficulty difficulty;
+        
+
+        private static KeyboardState keyboardState, lastKeyboardState;
+        private static GamePadState gamepadState, lastGamepadState;
 
         public Game1()
         {
@@ -95,6 +102,7 @@ namespace Dreamkeeper
             menuDifficultySelect = new MenuDifficultySelect(Content, MenuSwitchEvent, graphics);
             menuHighscore = new MenuHighscore(Content, MenuSwitchEvent, graphics);
             levelselect = new LevelSelect(Content, MenuSwitchEvent, graphics);
+            pauseScreen = new PauseScreen(Content, MenuSwitchEvent, graphics);
             level1 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level1"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 1, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             level2 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level2Wip"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 2, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             level3 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level3Wip"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 3, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
@@ -127,13 +135,24 @@ namespace Dreamkeeper
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            currentScreen.Update(gameTime);
 
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
-            
+            //pause
+            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.P) && lastKeyboardState.IsKeyUp(Keys.P) && currentScreen != pauseScreen
+               && currentScreen != menuMain && currentScreen != menuGraphicsOptions && currentScreen != menuGameplayOptions
+               && currentScreen != menuOptions && currentScreen != menuHighscore && currentScreen != menuGamemodeSelect
+               && currentScreen != menuDifficultySelect && currentScreen != menuSoundOptions && currentScreen != levelselect)
+            {
+                MenuSwitch((int)Stateswitch.PAUSESCREEN);
+            }
+            else if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.P) && lastKeyboardState.IsKeyUp(Keys.P) && currentScreen == pauseScreen)
+            {
+                MenuSwitch((int)oldStateswitch);
+            }
+            lastKeyboardState = Keyboard.GetState(PlayerIndex.One);
+            currentScreen.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -160,6 +179,7 @@ namespace Dreamkeeper
 
         private void MenuSwitch(int i)
         {
+            oldStateswitch = stateswitch;
             stateswitch = (Stateswitch)i;
 
             switch (stateswitch)
@@ -171,6 +191,9 @@ namespace Dreamkeeper
                     break;
                 case Stateswitch.GAMEMODE:
                     currentScreen = menuGamemodeSelect;
+                    break;
+                case Stateswitch.PAUSESCREEN:
+                    currentScreen = pauseScreen;
                     break;
                 case Stateswitch.OPTIONS:
                     currentScreen = menuOptions;
