@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Dreamkeeper.Ammonition">
-    <Position X="0.75" Y="15" Width="1.5" />
+    <Position X="1" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAQAEAAAgQghAAAAAAIAACAEAAAgQAAAQAFACgggQ=</HashCode>
       <FileName>Ammonition.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.AnimatedSprite">
-    <Position X="15.75" Y="15" Width="1.5" />
+    <Position X="15.75" Y="14.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAgAAAAkAAAAgAAAAAAAAAAAAAABIAAAgAAAA=</HashCode>
       <FileName>AnimatedSprite.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.Button">
-    <Position X="11.75" Y="15" Width="1.5" />
+    <Position X="11.75" Y="14.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAgQAQCAAIAAAAAAAAgCIAwAAAAAAAAA=</HashCode>
       <FileName>Button.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.Enemy">
-    <Position X="9.75" Y="15" Width="1.5" />
+    <Position X="9.75" Y="14.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAACAAAAAgAAAAgBIAAAAAAEAggIAAQCAAACAAg=</HashCode>
       <FileName>Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.Game1">
-    <Position X="0.75" Y="2.25" Width="1.5" />
+    <Position X="1" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAEkADAAAAAyAAAAAAAAAABQEIAAiBgAAgAQAJgIQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.HUD">
-    <Position X="13.75" Y="15" Width="1.5" />
+    <Position X="13.75" Y="13.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACADhIaBAAQBIwQBQCA4JAABAAgAAgiIAgBAMAAgAIA=</HashCode>
       <FileName>HUD.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.Item">
-    <Position X="0.75" Y="12.25" Width="1.5" />
+    <Position X="1" Y="15" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAAgAAAAAAAAEAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Item.cs</FileName>
@@ -134,14 +134,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.Program">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Position X="1" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dreamkeeper.Screen">
-    <Position X="3.75" Y="4.75" Width="1.5" />
+    <Position X="3.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAgAAAAEIAAAAAA=</HashCode>
       <FileName>Screen.cs</FileName>
@@ -155,21 +155,21 @@
     </TypeIdentifier>
   </Class>
   <Enum Name="Dreamkeeper.Ammonitions">
-    <Position X="3.75" Y="15" Width="1.5" />
+    <Position X="3.75" Y="14" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAACAAAAEAAAAAAAAAEAAABAA=</HashCode>
       <FileName>Ammonition.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Dreamkeeper.Difficulty">
-    <Position X="7.75" Y="15" Width="1.5" />
+    <Position X="7.75" Y="14" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Dreamkeeper.Stateswitch">
-    <Position X="5.75" Y="15" Width="1.5" />
+    <Position X="5.75" Y="14" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAABBBCAACAAAAQAAgAAAABAAAABAAAAQAAcAAAAA=</HashCode>
       <FileName>Game1.cs</FileName>

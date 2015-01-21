@@ -9,6 +9,52 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Dreamkeeper
 {
+
+    public class HUD
+    {
+        #region Variables
+        private GraphicsDeviceManager graphics;
+        private ContentManager content;
+        private Vector2 position;
+
+        private Texture2D texture { get; set; }
+        private float width;
+        private float height;
+
+        // Timeline Variable
+        private float posEndXTimeline;
+        #endregion
+
+        #region Constructor
+        public HUD(ContentManager theContent, GraphicsDeviceManager graphic)
+        {
+            this.content = theContent;
+            this.graphics = graphic;
+        }
+        private HUD(Texture2D texture, Vector2 position, float width, float height)
+        {
+            this.texture = texture;
+            this.width = width;
+            this.height = height;
+        }
+        #endregion
+
+        #region 
+        private void Initialize()
+        {
+
+        }
+
+        #endregion
+
+
+
+    }
+}
+
+
+
+    /*
     class HUD
     {        
         // Volumes
@@ -162,3 +208,5 @@ namespace Dreamkeeper
        
     }
 }
+
+    */
