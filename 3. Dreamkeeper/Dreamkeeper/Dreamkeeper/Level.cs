@@ -22,6 +22,7 @@ namespace Dreamkeeper
         int targetScore;
         EventHandler<SwitchEventArgs> theScreenEvent;
         HUD hud;
+        LevelEndState levelendstate;
         private int time; // in seconds
 
         public Level(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics, Texture2D background, Difficulty difficulty, Enemy enemy, int targetScore, int time)
@@ -45,8 +46,12 @@ namespace Dreamkeeper
 
             Program.game.player.AddItemToInventory(ammo);
 
-            hud = new HUD(theContent, graphics.GraphicsDevice);
-            hud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            hud = new HUD(theContent, graphics);
+            levelendstate = new LevelEndState(theContent, theScreenEvent, graphics);
+            
+
+            //hud = new HUD(theContent, graphics.GraphicsDevice);
+            //hud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
         }
 
         public override void Update(GameTime theTime)
@@ -61,13 +66,11 @@ namespace Dreamkeeper
             }
 
             if (hud.GetTimeState(time * 120) || score >= targetScore)
-            {
-                Program.game.score += score;
+            {                
+                Program.game.score += score;                
                 score = 0;
-                hud.timepointer.positionX = 3f;
-                hud.Initialize(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
                 var method = theScreenEvent;
-                method(this, new SwitchEventArgs((int)Program.game.stateswitch + 1));
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVELENDSTATE));
             }
         }
 

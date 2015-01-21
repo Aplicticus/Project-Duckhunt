@@ -10,202 +10,121 @@ using Microsoft.Xna.Framework.Input;
 namespace Dreamkeeper
 {
 
-    //public class HUD
-    //{
-    //    #region Variables
-    //    private GraphicsDeviceManager graphics;
-    //    private ContentManager content;
-    //    private Vector2 position;
-
-    //    private Texture2D texture { get; set; }
-    //    private float width;
-    //    private float height;
-
-    //    // Timeline Variable
-    //    private float posEndXTimeline;
-    //    #endregion
-
-    //    #region Constructor
-    //    public HUD(ContentManager theContent, GraphicsDeviceManager graphic)
-    //    {
-    //        this.content = theContent;
-    //        this.graphics = graphic;
-    //    }
-    //    private HUD(Texture2D texture, Vector2 position, float width, float height)
-    //    {
-    //        this.texture = texture;
-    //        this.width = width;
-    //        this.height = height;
-    //    }
-    //    #endregion
-
-    //    #region 
-    //    private void Initialize()
-    //    {
-
-    //    }
-
-    //    #endregion
-
-
-
-    //}
-}
-
-
-
-
-class HUD
-{
-    // Volumes
-    private float width { get; set; }
-    private float height { get; set; }
-
-    // Positions
-    public float positionX { get; set; }
-    public float positionY { get; set; }
-    public float positionEndX { get; set; }
-
-    // Time variables
-    private float time { get; set; }
-    private float timelaps { get; set; }
-
-
-    // Global variables
-    private ContentManager content;
-    private GraphicsDevice graphics;
-    private SpriteFont spriteFont { get; set; }
-    private string text { get; set; }
-    private Color color { get; set; }
-    private Texture2D texture { get; set; }
-
-    // -- Alter Variable Changes
-    // Header Width & Heights
-    private float scoreWidth = 5f;
-    private float scoreHeight = 6f;
-    private float timelineWidth = 2.5f;
-    private float timelineHeight = 6f;
-    private float timepointerWidth = 95f;
-    private float timepointerHeight = 25f;
-    private float ammoswapWidth = 5f;
-    private float ammoswapHeight = 6f;
-
-    // Header Positions
-    private float timelinePositionX = 3f;
-    private float timepointerPositionX = 3f;
-    private float ammoswapPositionX = 95f;
-    private float ammoswapPositionY = 1.25f;
-
-    // HUDS
-    private HUD score;
-    private HUD timeline;
-    public HUD timepointer;
-    private HUD ammoswap;
-
-    // Sprite Fonts
-    //private SpriteFont currentScore;
-
-    // Texture2Ds
-    private Texture2D bgScore;
-    private Texture2D bgTimeline;
-    private Texture2D bgTimepointer;
-    private Texture2D bgammoswap;
-    private Texture2D bgOverlay;
-
-    // Constructors
-    public HUD(ContentManager theContent, GraphicsDevice graphics)
+    public class HUD
     {
-        content = theContent;
-        this.graphics = graphics;
-    }
-    public HUD(Texture2D texture, float positionX, float positionY, float width, float height)
-    {
-        this.texture = texture;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.width = width;
-        this.height = height;
-        positionEndX = positionX + width;
-    }
+        #region Variables
+        private GraphicsDeviceManager graphics;
+        private ContentManager content;
+        private Vector2 position;
+        private Texture2D texture { get; set; }
+        private float width;
+        private float height;
 
-    // Initializers
-    public void Initialize(float positionX, float positionY, float width, float height)
-    {
-        loadContent();
-        InitializeHUD(positionX, positionY, width, height);
-    }
-    private void InitializeHUD(float positionX, float positionY, float width, float height)
-    {
-        score = new HUD(bgScore, (width / 10) - (width / scoreWidth / 3.5f), (height / 1.2f) - (height / scoreHeight / 3.5f), width / scoreWidth, height / scoreHeight);
-        timeline = new HUD(bgTimeline, positionX / timelinePositionX, height - (height / 5) - timelineHeight, width / timelineWidth, height / timelineHeight);
-        timepointer = new HUD(bgTimepointer, positionX / timepointerPositionX, (height - (height / 5) - timelineHeight) + ((height / timelineHeight) / 1.3f), width / timepointerWidth, height / timepointerHeight);
-        timepointer.positionEndX = timeline.positionEndX - timeline.positionEndX / 80f; // End position of the timepointer
-        ammoswap = new HUD(bgammoswap, positionX / ammoswapPositionX, positionY / ammoswapPositionY, width / ammoswapWidth, height / ammoswapHeight);
-    }
+        private Texture2D[] textures = new Texture2D[15];
+        private List<HUD> huds = new List<HUD>();
+        private List<Vector2> vectors = new List<Vector2>();
+        private List<float> floatsW = new List<float>();
+        private List<float> floatsH = new List<float>();              
 
-    // Load Contents
-    private void loadContent()
-    {
-        bgScore = content.Load<Texture2D>("cloud");
-        bgTimeline = content.Load<Texture2D>("HUD_Timeline");
-        bgTimepointer = content.Load<Texture2D>("HUD_TimePointer");
-        bgammoswap = content.Load<Texture2D>("HUD_Timeline");
-        bgOverlay = content.Load<Texture2D>("DreamHud");
-    }
+        // Timeline Variable
+        private float posEndXTimePointer;
+        private float time { get; set; }
+        private float timelaps { get; set; }
+        #endregion
 
-    // Draw Methods
-    private void Draw(SpriteBatch theBatch)
-    {
-        if (texture != null)
-            theBatch.Draw(texture, new Rectangle((int)positionX, (int)positionY, (int)width, (int)height), Color.White);
-        else
+        #region Constructor
+        public HUD(ContentManager theContent, GraphicsDeviceManager graphics)
         {
-            theBatch.DrawString(spriteFont, text, new Vector2(positionX, positionY), color);
+            this.content = theContent;
+            this.graphics = graphics;
+            Initialize();
         }
-    }
-    public void DrawHUD(SpriteBatch theBatch)
-    {
-        theBatch.Draw(bgOverlay, new Rectangle(0, 0, graphics.Viewport.Width, graphics.Viewport.Height), Color.White);
-        score.Draw(theBatch);
-        timeline.Draw(theBatch);
-        timepointer.Draw(theBatch);
-        //ammoswap.Draw(theBatch);
-    }
-    // Timeline Method
-    public bool GetTimeState(int levelTime)
-    {
-        timelaps = levelTime; // 1 minute = ~5700
-        time = timepointer.positionEndX / timelaps;
-
-        if (timepointer.positionX >= timepointer.positionEndX)
-            return true;
-        else
+        private HUD(Texture2D texture, Vector2 position, float width, float height)
         {
-            timepointer.positionX += time;
-            return false;
+            this.texture = texture;
+            this.position = position;
+            this.width = width;
+            this.height = height;
         }
+        #endregion
+
+        #region
+        private void Initialize()
+        {
+            LoadContent();
+            Calculate();
+
+            vectors.Add(new Vector2(position.X / 28f, position.Y / 1.265f)); // Cloud
+            vectors.Add(new Vector2(position.X / 3f, position.Y / 1.265f)); // TimeLine
+            vectors.Add(new Vector2(position.X / 3f, position.Y / 1.085f)); // TimePointer
+
+            floatsW.Add(width / 5f); // Cloud Width
+            floatsW.Add(width / 2.5f); // TimeLine Width
+            floatsW.Add(width / 95f); // TimePointer Width
+
+            floatsH.Add(height / 6f); // Cloud Height
+            floatsH.Add(height / 6f); // Timeline Height
+            floatsH.Add(height / 25f); // TimePointer Height         
+
+            huds.Add(new HUD(textures[0], new Vector2(vectors[0].X, vectors[0].Y), floatsW[0], floatsH[0])); // Cloud
+            huds.Add(new HUD(textures[1], new Vector2(vectors[1].X, vectors[1].Y), floatsW[1], floatsH[1])); // TimeLine
+            huds.Add(new HUD(textures[2], new Vector2(vectors[2].X, vectors[2].Y), floatsW[2], floatsH[2])); // TimePointer   
+
+            posEndXTimePointer = huds[1].position.X + huds[1].width / 1.015f;
+        }
+        #endregion
+
+        #region Calculate
+        private void Calculate()
+        {
+            position.X = graphics.PreferredBackBufferWidth;
+            position.Y = graphics.PreferredBackBufferHeight;
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+        }
+        #endregion
+
+        #region LoadContent
+        private void LoadContent()
+        {
+            textures[0] = content.Load<Texture2D>("cloud");
+            textures[1] = content.Load<Texture2D>("HUD_Timeline");
+            textures[2] = content.Load<Texture2D>("HUD_TimePointer");
+            textures[3] = content.Load<Texture2D>("DreamHud");
+        }
+        #endregion
+
+        #region Draw Methods
+        private void Draw(SpriteBatch theBatch)
+        {
+            if (texture != null)
+                theBatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height), Color.White);           
+        }
+        public void DrawHUD(SpriteBatch theBatch)
+        {
+            theBatch.Draw(textures[3], new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
+            
+            foreach (HUD hud in huds)
+            {
+                hud.Draw(theBatch);
+            }
+        }
+        #endregion
+
+        #region Timeline Method
+        public bool GetTimeState(int levelTime)
+        {
+            timelaps = levelTime; // 1 minute = ~5700
+            time = posEndXTimePointer / timelaps;
+
+            if (huds[2].position.X >= posEndXTimePointer)
+                return true;
+            else
+            {
+                huds[2].position.X += time;
+                return false;
+            }
+        }
+        #endregion
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-    

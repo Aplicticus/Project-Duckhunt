@@ -16,7 +16,7 @@ namespace Dreamkeeper
     /// </summary>
 
     public enum Difficulty { EASY, MEDIUM, HARD }
-    public enum Stateswitch { INTRO, MAIN, PAUSESCREEN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVELSELECT, INTRO1_1, LEVEL1, INTRO1_2, INTRO2_1, LEVEL2, INTRO2_2, INTRO3_1, LEVEL3, INTRO3_2, INTRO4_1, LEVEL4, INTRO4_2, INTRO5_1, LEVEL5, INTRO5_2, INTRO6_1, LEVEL6, INTRO6_2, INTRO7_1, LEVEL7, INTRO7_2, INTRO8_1, LEVEL8, INTRO8_2, INTRO9_1, LEVEL9, INTRO9_2, INTRO10_1, LEVEL10, INTRO10_2 }
+    public enum Stateswitch { INTRO, MAIN, PAUSESCREEN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVELSELECT, LEVELENDSTATE, INTRO1_1, LEVEL1, INTRO1_2, INTRO2_1, LEVEL2, INTRO2_2, INTRO3_1, LEVEL3, INTRO3_2, INTRO4_1, LEVEL4, INTRO4_2, INTRO5_1, LEVEL5, INTRO5_2, INTRO6_1, LEVEL6, INTRO6_2, INTRO7_1, LEVEL7, INTRO7_2, INTRO8_1, LEVEL8, INTRO8_2, INTRO9_1, LEVEL9, INTRO9_2, INTRO10_1, LEVEL10, INTRO10_2 }
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -33,8 +33,9 @@ namespace Dreamkeeper
         public MenuGraphicsOptions menuGraphicsOptions;
         public MenuSoundOptions menuSoundOptions;
         public MenuDifficultySelect menuDifficultySelect;
-        public MenuHighscore menuHighscore;
+        public MenuHighscore menuHighscore;       
         public LevelSelect levelselect;
+        public LevelEndState levelendstate;
         public PauseScreen pauseScreen;
         public Intro intro1_1, intro1_2, intro2_1, intro2_2, intro3_1, intro3_2, intro4_1, intro4_2, intro5_1, intro5_2, intro6_1, intro6_2, intro7_1, intro7_2, intro8_1, intro8_2, intro9_1, intro9_2, intro10_1, intro10_2;
         public Level level1, level2, level3, level4, level5, level6, level7, level8, level9, level10;
@@ -85,6 +86,7 @@ namespace Dreamkeeper
             menuSoundOptions = new MenuSoundOptions(Content, MenuSwitchEvent, graphics);
             menuDifficultySelect = new MenuDifficultySelect(Content, MenuSwitchEvent, graphics);
             menuHighscore = new MenuHighscore(Content, MenuSwitchEvent, graphics);
+            levelendstate = new LevelEndState(Content, MenuSwitchEvent, graphics);
             levelselect = new LevelSelect(Content, MenuSwitchEvent, graphics);
             pauseScreen = new PauseScreen(Content, MenuSwitchEvent, graphics);
 
@@ -227,6 +229,9 @@ namespace Dreamkeeper
                     break;
                 case Stateswitch.LEVELSELECT:
                     currentScreen = levelselect;
+                    break;
+                case Stateswitch.LEVELENDSTATE:
+                    currentScreen = levelendstate;
                     break;
                 case Stateswitch.INTRO1_1:
                     currentScreen = intro1_1;
