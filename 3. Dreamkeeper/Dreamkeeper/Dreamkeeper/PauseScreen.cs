@@ -17,7 +17,6 @@ namespace Dreamkeeper
         private KeyboardState oldStateKeyboard;
 
         private SpriteFont font;
-        private bool isOnPause = false;
         private Texture2D background;
 
         private Button btnDoorgaan;
@@ -29,9 +28,7 @@ namespace Dreamkeeper
             this.graphics = graphics;
             this.theScreenEvent = theScreenEvent;
             background = theContent.Load<Texture2D>("Mountains4");
-
             font = theContent.Load<SpriteFont>("MenuFont");
-
             btnDoorgaan = new Button(font, "Doorgaan", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnExit = new Button(font, "Terug naar het menu", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
         }
@@ -54,17 +51,7 @@ namespace Dreamkeeper
                 ReloadContent();
                 var method = theScreenEvent;
                 method(this, new SwitchEventArgs((int)Stateswitch.MAIN));
-            }
-            //test
-
-
-            //if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.P) && KeyboardPause.isOnPause == true)
-            //{
-            //    KeyboardPause.isOnPause = false;
-            //    var method = theScreenEvent;
-            //    method(this, new SwitchEventArgs((int)Program.game.oldStateswitch));
-            //}
-
+            } 
             oldStateMouse = newState;
             oldStateKeyboard = keyboardState;
             // Change objects to resolution

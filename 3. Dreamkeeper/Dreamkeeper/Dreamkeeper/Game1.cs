@@ -17,17 +17,12 @@ namespace Dreamkeeper
 
     public enum Difficulty { EASY, MEDIUM, HARD }
     public enum Stateswitch { INTRO, MAIN,PAUSESCREEN, GAMEMODE, OPTIONS, HIGHSCORE, GAMEPLAYOPTS, GRAPHICSOPTS, SOUNDOPTS, STORY, ARCADE, BOSS, DIFFICULTY, LEVELSELECT, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10 }
-
     
-
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         public Player player;
-        
-
         public MenuMain menuMain;
         public MenuGamemodeSelect menuGamemodeSelect;
         public MenuOptions menuOptions;
@@ -49,14 +44,12 @@ namespace Dreamkeeper
         public Level level9;
         public Level level10;
         Screen currentScreen;
-        Screen oldcurrentScreen;
         public Stateswitch stateswitch = Stateswitch.MAIN;
         public Stateswitch oldStateswitch;
         public Difficulty difficulty;
         
 
-        private static KeyboardState keyboardState, lastKeyboardState;
-        private static GamePadState gamepadState, lastGamepadState;
+        private static KeyboardState lastKeyboardState;
 
         public Game1()
         {
@@ -75,9 +68,7 @@ namespace Dreamkeeper
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
-
+        {       
             base.Initialize();
         }
 
@@ -89,10 +80,8 @@ namespace Dreamkeeper
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             player = new Player("Hoi");
             difficulty = Difficulty.MEDIUM;
-
             menuMain = new MenuMain(Content, MenuSwitchEvent, graphics);
             menuGamemodeSelect = new MenuGamemodeSelect(Content, MenuSwitchEvent, graphics);
             menuOptions = new MenuOptions(Content, MenuSwitchEvent, graphics);
@@ -113,10 +102,7 @@ namespace Dreamkeeper
             level8 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level8Wip"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 3, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             level9 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level9Wip"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 3, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             level10 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level10Wip-Recovered"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 3, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
-
-            currentScreen = menuMain;
-
-            // TODO: use this.Content to load your game content here
+            currentScreen = menuMain;            
         }
 
         /// <summary>
@@ -164,11 +150,9 @@ namespace Dreamkeeper
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             spriteBatch.Begin();
             currentScreen.Draw(spriteBatch);
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
 
@@ -258,7 +242,6 @@ namespace Dreamkeeper
                 default:
                     break;
             }
-
             System.Threading.Thread.Sleep(300);
         }
     }
