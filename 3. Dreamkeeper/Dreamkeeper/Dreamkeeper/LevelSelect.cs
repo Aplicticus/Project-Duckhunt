@@ -87,14 +87,14 @@ namespace Dreamkeeper
             textures[0] = content.Load<Texture2D>("missingTextureWhite"); // Global Border
             textures[1] = content.Load<Texture2D>("missingTextureBlack"); // Global
             textures[2] = content.Load<Texture2D>("level1"); // Level 1
-            textures[3] = content.Load<Texture2D>("level2wip"); // Level 2
+            textures[3] = content.Load<Texture2D>("level2"); // Level 2
             textures[4] = content.Load<Texture2D>("level3wip"); // Level 3
-            textures[5] = content.Load<Texture2D>("level4wip"); // Level 4
-            textures[6] = content.Load<Texture2D>("level5wip"); // Level 5
-            textures[7] = content.Load<Texture2D>("level6wip"); // Level 6
-            textures[8] = content.Load<Texture2D>("level7wip"); // Level 7
-            textures[9] = content.Load<Texture2D>("level8wip"); // Level 8
-            textures[10] = content.Load<Texture2D>("level9wip"); // Level 9
+            textures[5] = content.Load<Texture2D>("level4"); // Level 4
+            textures[6] = content.Load<Texture2D>("level5"); // Level 5
+            textures[7] = content.Load<Texture2D>("level6"); // Level 6
+            textures[8] = content.Load<Texture2D>("level7"); // Level 7
+            textures[9] = content.Load<Texture2D>("level8"); // Level 8
+            textures[10] = content.Load<Texture2D>("level9"); // Level 9
         }
         #endregion
 
