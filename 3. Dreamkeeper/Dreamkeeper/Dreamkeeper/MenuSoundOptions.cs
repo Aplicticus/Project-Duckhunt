@@ -8,11 +8,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace Dreamkeeper
 {
     public class MenuSoundOptions : Screen
     {
+        [Serializable]
+        public struct SoundOptions
+        {
+            public int Volume;
+        }
+
         private EventHandler<SwitchEventArgs> theScreenEvent;
         private Texture2D background;
         private MouseState oldState;
@@ -22,6 +30,10 @@ namespace Dreamkeeper
         private Button btnMasterVolumeDescrease;
         private Button btnMasterVolumeIncrease;
         private Button btnBack;
+
+        public SoundOptions soundOptions;
+        private string SavegamePath;
+        public FileStream dataStream;
 
          public MenuSoundOptions(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics)
             : base(theScreenEvent, graphics)
@@ -36,6 +48,18 @@ namespace Dreamkeeper
             btnMasterVolumeDescrease = new Button(font, "<", Color.Black, new Vector2(300, 100));
             btnMasterVolumeIncrease = new Button(font, ">", Color.Black, new Vector2(360, 100));
             btnBack = new Button(font, "Terug", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
+
+            String dirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Dreamkeeper");
+            DirectoryInfo directory = new DirectoryInfo(dirPath);
+            if (!directory.Exists)
+                directory.Create(); //so no exception rises when you try to access your game file
+
+            this.SavegamePath = Path.Combine(dirPath, "SoundOptions.xml");
+            if (!File.Exists(SavegamePath))
+                CreateData();
+            LoadData();
+
+            MediaPlayer.Volume = (float)soundOptions.Volume;
         }
 
         public override void Update(GameTime theTime)
@@ -52,6 +76,7 @@ namespace Dreamkeeper
             if (btnBack.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
             {
                 ReloadContent();
+                ApplyChanges();
                 var method = theScreenEvent;
                 method(this, new SwitchEventArgs((int)Stateswitch.OPTIONS));
             }
@@ -81,6 +106,29 @@ namespace Dreamkeeper
             btnBack.Draw(theBatch);
 
             base.Draw(theBatch);
+        }
+        private void ApplyChanges()
+        {
+            soundOptions.Volume = (int)MediaPlayer.Volume;
+            dataStream = File.Open(SavegamePath, FileMode.Create);
+            XmlSerializer serializer = new XmlSerializer(typeof(SoundOptions));
+            serializer.Serialize(dataStream, soundOptions);
+            dataStream.Close();
+        }
+        public void CreateData()
+        {
+            soundOptions.Volume = 10;
+            dataStream = File.Create(SavegamePath);
+            XmlSerializer serializer = new XmlSerializer(typeof(SoundOptions));
+            serializer.Serialize(dataStream, soundOptions);
+            dataStream.Close();
+        }
+        public void LoadData()
+        {
+            dataStream = File.Open(SavegamePath, FileMode.Open);
+            XmlSerializer serializer = new XmlSerializer(typeof(SoundOptions));
+            soundOptions = (SoundOptions)serializer.Deserialize(dataStream);
+            dataStream.Close();
         }
     }
 }

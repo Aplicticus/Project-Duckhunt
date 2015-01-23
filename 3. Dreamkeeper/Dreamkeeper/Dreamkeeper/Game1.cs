@@ -124,6 +124,13 @@ namespace Dreamkeeper
             level9 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level9Wip"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 3, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             level10 = new Level(Content, MenuSwitchEvent, graphics, Content.Load<Texture2D>("Level10Wip-Recovered"), difficulty, new Enemy("Crow", Content.Load<Texture2D>("Crow-Fly-Right"), Content.Load<Texture2D>("Crow-Fly-Left"), new Vector2(graphics.PreferredBackBufferWidth, 100), 3, new Vector2(-2, 0), Content, graphics.GraphicsDevice), 1000, 60);
             currentScreen = menuMain;
+
+            graphics.PreferredBackBufferWidth = menuGraphicsOptions.graphicsOptions.Width;
+            graphics.PreferredBackBufferHeight = menuGraphicsOptions.graphicsOptions.Height;
+            graphics.IsFullScreen = menuGraphicsOptions.graphicsOptions.Fullscreen;
+            graphics.PreferMultiSampling = menuGraphicsOptions.graphicsOptions.AntiAliasing;
+
+            graphics.ApplyChanges();
         }
 
         /// <summary>
