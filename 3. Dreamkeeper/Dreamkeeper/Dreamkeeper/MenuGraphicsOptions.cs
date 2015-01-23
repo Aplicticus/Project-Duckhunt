@@ -48,7 +48,7 @@ namespace Dreamkeeper
             this.graphics = graphics;
             this.theScreenEvent = theScreenEvent;
             this.content = theContent;
-            background = theContent.Load<Texture2D>("Mountains4");
+            background = theContent.Load<Texture2D>("MenuBG");
 
             font = theContent.Load<SpriteFont>("MenuFont");
             

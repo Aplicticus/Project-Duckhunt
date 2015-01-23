@@ -43,7 +43,7 @@ namespace Dreamkeeper
         {
             this.graphics = graphics;
             this.theScreenEvent = theScreenEvent;
-            background = theContent.Load<Texture2D>("Mountains4");
+            background = theContent.Load<Texture2D>("MenuBG");
 
             enter = new Vector2(0, 40);
             count = 0;

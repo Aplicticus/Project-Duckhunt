@@ -43,7 +43,7 @@ namespace Dreamkeeper
             this.content = theContent;
             this.graphics = graphics;
             this.theScreenEvent = theScreenEvent;
-            background = theContent.Load<Texture2D>("Mountains4");
+            background = theContent.Load<Texture2D>("LvlSelectBG");
             Initialize();
 
         }                     
@@ -208,9 +208,9 @@ namespace Dreamkeeper
             //Draw logic
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
 
-            foreach (Button button in btns)
+            for (int i = 2; i < btns.Count; i++)
             {
-                button.Draw(theBatch);
+                btns[i].Draw(theBatch);
             }
 
             base.Draw(theBatch);
