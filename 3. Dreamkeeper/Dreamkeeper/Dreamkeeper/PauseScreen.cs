@@ -27,7 +27,7 @@ namespace Dreamkeeper
         {
             this.graphics = graphics;
             this.theScreenEvent = theScreenEvent;
-            background = theContent.Load<Texture2D>("Mountains4");
+            background = theContent.Load<Texture2D>("MenuBG");
             font = theContent.Load<SpriteFont>("MenuFont");
             btnDoorgaan = new Button(font, "Doorgaan", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 100));
             btnExit = new Button(font, "Terug naar het menu", Color.Black, new Vector2(graphics.PreferredBackBufferWidth / 3, 140));
