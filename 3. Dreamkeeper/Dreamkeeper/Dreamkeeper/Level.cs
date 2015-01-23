@@ -65,8 +65,8 @@ namespace Dreamkeeper
 
             if(hud.GetTimeState(time * 120) && score <= targetScore)
             {
-                Program.game.score += score;
                 levelendstate.SetResultState(false);
+                Program.game.score += score;
                 score = 0;
                 var method = theScreenEvent;
                 method(this, new SwitchEventArgs((int)Stateswitch.LEVELENDSTATE));

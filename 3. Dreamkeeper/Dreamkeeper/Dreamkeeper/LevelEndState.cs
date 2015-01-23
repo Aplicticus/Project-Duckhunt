@@ -12,7 +12,7 @@ namespace Dreamkeeper
     public class LevelEndState : Screen
     {
         #region Variables
-        private EventHandler<SwitchEventArgs> theScreenEvent;        
+        private EventHandler<SwitchEventArgs> theScreenEvent;
         private Texture2D background;
         private Vector2 position;
         private ContentManager theContent;
@@ -27,8 +27,7 @@ namespace Dreamkeeper
 
         private float width;
         private float height;
-        private bool resultState;
-        //private int resultScore;
+        private static bool resultState; // != static == Invalid memory
         private string resultText;
         #endregion
 
@@ -41,7 +40,6 @@ namespace Dreamkeeper
             this.theContent = theContent;
             background = theContent.Load<Texture2D>("Mountains4");
             Initialize();
-            resultState = false;
         }
         #endregion
 
@@ -52,7 +50,7 @@ namespace Dreamkeeper
             LoadContent();
 
             // Strings
-            resultText = "Je eindscore is:"; 
+            resultText = "Je eindscore is:";
 
             // FloatsW
             floatsW.Add(width / 2f); // Win Image
@@ -73,7 +71,7 @@ namespace Dreamkeeper
             vectors.Add(new Vector2(position.X / 3.5f, position.Y / 1.9f)); // Save Highscore Button
             vectors.Add(new Vector2(position.X / 1.5f, position.Y / 2.5f)); // Score Result
             vectors.Add(new Vector2(position.X / 3.5f, position.Y / 2.5f)); // Score Text
-            
+
             // Buttons
             buttons.Add(new Button(textures[0], new Rectangle((int)vectors[0].X, (int)vectors[0].Y, (int)floatsW[0], (int)floatsH[0]), Color.White)); // Win Image
             buttons.Add(new Button(textures[1], new Rectangle((int)vectors[1].X, (int)vectors[1].Y, (int)floatsW[1], (int)floatsH[1]), Color.White)); // Lose Image
@@ -129,18 +127,25 @@ namespace Dreamkeeper
             {
                 theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             }
-            
-            if (resultState == true)
+
+            switch (resultState)
             {
-                buttons[0].Draw(theBatch);
-            }
-            else if(resultState == false)
-            {
-                buttons[1].Draw(theBatch);
-                buttons[2].Draw(theBatch);
-                buttons[3].Draw(theBatch);
-                theBatch.DrawString(font, Program.game.score.ToString(), new Vector2(vectors[4].X, vectors[4].Y), Color.Black);
-                theBatch.DrawString(font, resultText, new Vector2(vectors[5].X, vectors[5].Y), Color.Black);
+                case true:
+                    buttons[0].Draw(theBatch);                    
+                    buttons[2].Draw(theBatch);
+                    buttons[3].Draw(theBatch);
+                    theBatch.DrawString(font, Program.game.score.ToString(), new Vector2(vectors[4].X, vectors[4].Y), Color.Black);
+                    theBatch.DrawString(font, resultText, new Vector2(vectors[5].X, vectors[5].Y), Color.Black);
+                    break;
+                case false:
+                    buttons[1].Draw(theBatch);
+                    buttons[2].Draw(theBatch);
+                    buttons[3].Draw(theBatch);
+                    theBatch.DrawString(font, Program.game.score.ToString(), new Vector2(vectors[4].X, vectors[4].Y), Color.Black);
+                    theBatch.DrawString(font, resultText, new Vector2(vectors[5].X, vectors[5].Y), Color.Black);
+                    break;
+                default:
+                    break;
             }
             base.Draw(theBatch);
         }

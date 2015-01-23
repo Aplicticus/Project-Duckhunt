@@ -27,7 +27,14 @@ namespace Dreamkeeper
 
         public override void Update(GameTime theTime)
         {
+            
             txtbox.Update();
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && (int)Program.game.stateswitch == (int)Stateswitch.INTRO10_2)
+            {
+                levelendstate.SetResultState(true);
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVELENDSTATE));
+            }
 
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
