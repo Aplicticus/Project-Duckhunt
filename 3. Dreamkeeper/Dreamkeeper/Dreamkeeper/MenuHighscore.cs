@@ -14,6 +14,14 @@ namespace Dreamkeeper
 {
     public class MenuHighscore : Screen
     {
+        [Serializable]
+        public struct HighScore
+        {
+            public string Name;
+            public string Score;
+            public string Level;
+        }
+
         public EventHandler<SwitchEventArgs> theScreenEvent;
         public SpriteFont font;
         public Texture2D background;
@@ -21,15 +29,14 @@ namespace Dreamkeeper
         private Button btnBack;
         private Button btnClear;
 
-        private string SavegamePath;
-
         private Vector2 enter;
 
         private int count;
 
         public FileStream dataStream;
-
         public HighScore bestScore;
+        public List<HighScore> _highScores = new List<HighScore>();
+        private string SavegamePath;
 
         public MenuHighscore(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics)
             : base(theScreenEvent, graphics)
@@ -55,12 +62,7 @@ namespace Dreamkeeper
 
             this.SavegamePath = Path.Combine(dirPath, "Savegame.xml");
             if (!File.Exists(SavegamePath))
-            {
-                //_highScores.Add(new HighScore() { Name = "Rudy", Score = 2000, Level = 1 });
-                //_highScores.Add(new HighScore() { Name = "Mathijs", Score = 9001, Level = 1 });
-                //_highScores.Add(new HighScore() { Name = "Tommy", Score = 1337, Level = 1 });
                 CreateData();
-            }
             LoadData();
         }
 
@@ -77,17 +79,7 @@ namespace Dreamkeeper
             if (btnClear.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
                 ClearData();
 
-            if (!File.Exists(SavegamePath))
-            {
-                _highScores.Add(new HighScore() { Name = "Rudy", Score = 2000, Level = 1 });
-                _highScores.Add(new HighScore() { Name = "Mathijs", Score = 9001, Level = 1 });
-                _highScores.Add(new HighScore() { Name = "Tommy", Score = 1337, Level = 1 });
-                CreateData();
-            }
-
             oldState = newState;
-
-            LoadData();
 
             base.Update(gameTime);
         }
@@ -98,51 +90,47 @@ namespace Dreamkeeper
             btnBack.Draw(theBatch);
             btnClear.Draw(theBatch);
 
-            LoadData();
-
-            theBatch.DrawString(font, "Name", new Vector2(100, 50) + enter * count, Color.Black);
-            theBatch.DrawString(font, "Score", new Vector2(300, 50) + enter * count, Color.Black);
-            theBatch.DrawString(font, "Level", new Vector2(500, 50) + enter * count, Color.Black);
             foreach (HighScore highscore in _highScores)
             {
-                theBatch.DrawString(font, highscore.Name, new Vector2(100, 100) + enter * count, Color.Black);
-                theBatch.DrawString(font, highscore.Score.ToString(), new Vector2(300, 100) + enter * count, Color.Black);
-                theBatch.DrawString(font, highscore.Level.ToString(), new Vector2(500, 100) + enter * count, Color.Black);
+                if (count != 0)
+                {
+                    theBatch.DrawString(font, highscore.Name, new Vector2(100, 100) + enter * count, Color.Black);
+                    theBatch.DrawString(font, highscore.Score, new Vector2(300, 100) + enter * count, Color.Black);
+                    theBatch.DrawString(font, highscore.Level, new Vector2(500, 100) + enter * count, Color.Black);
+                }
+                else
+                {
+                    theBatch.DrawString(font, highscore.Name, new Vector2(100, 100) - enter, Color.Black);
+                    theBatch.DrawString(font, highscore.Score, new Vector2(300, 100) - enter, Color.Black);
+                    theBatch.DrawString(font, highscore.Level, new Vector2(500, 100) - enter, Color.Black);
+                }
                 count++;
             }
             count = 0;
             base.Draw(theBatch);
         }
-        [Serializable]
-        public struct HighScore
-        {
-            public string Name;
-            public int? Score;
-            public int? Level;
-        }
-
-        public List<HighScore> _highScores = new List<HighScore>();
 
         public void LoadData()
         {
             dataStream = File.Open(SavegamePath, FileMode.Open);
             XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
-            _highScores = serializer.Deserialize(dataStream) as List<HighScore>;
+            _highScores = (List<HighScore>)serializer.Deserialize(dataStream);
             dataStream.Close();
         }
         public void AddData(string name, int score, int level)
         {
-            _highScores.Add(new HighScore() { Name = name, Score = score, Level = level });
+            _highScores.Add(new HighScore() { Name = name, Score = score.ToString(), Level = level.ToString() });
             var orderedScores = _highScores.OrderByDescending(s => s.Score);
             _highScores = orderedScores.ToList();
             bestScore = orderedScores.FirstOrDefault();
-            dataStream = File.Open(SavegamePath, FileMode.Open);
+            dataStream = File.Open(SavegamePath, FileMode.Create);
             XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
             serializer.Serialize(dataStream, _highScores);
             dataStream.Close();
         }
         public void CreateData()
         {
+            _highScores.Add(new HighScore() { Name = "Naam", Score = "Score", Level = "level" });
             var orderedScores = _highScores.OrderByDescending(s => s.Score);
             _highScores = orderedScores.ToList();
             bestScore = orderedScores.FirstOrDefault();
@@ -154,11 +142,8 @@ namespace Dreamkeeper
         public void ClearData()
         {
             _highScores.Clear();
-            //dataStream = File.Open(SavegamePath, FileMode.Open);
-            //XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
-            //serializer.Serialize(dataStream, _highScores);
-            //dataStream.Close();
             File.Delete(SavegamePath);
+            CreateData();
         }
     }
 }
