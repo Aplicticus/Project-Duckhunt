@@ -58,6 +58,7 @@ namespace Dreamkeeper
             }
 
             if (btnQuit.IsClicked(newState) && oldState.LeftButton == ButtonState.Released)
+                // Missing Messagebox ( Are you sure to exit the game? ) ....
                 Environment.Exit(0);
 
             oldState = newState;

@@ -18,8 +18,8 @@ namespace Dreamkeeper
         Ammonition ammo;
         Texture2D background;
         SpriteFont font;
-        int score;
-        int targetScore;
+        private int score;
+        private int targetScore;
         EventHandler<SwitchEventArgs> theScreenEvent;
         HUD hud;
         LevelEndState levelendstate;
@@ -86,7 +86,7 @@ namespace Dreamkeeper
             theBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
             enemy.Draw(theBatch);
             ammo.Draw(theBatch);
-            hud.DrawHUD(theBatch);
+            hud.Draw(theBatch);
             theBatch.DrawString(font, score.ToString(), new Vector2(graphics.PreferredBackBufferWidth / 10, graphics.PreferredBackBufferHeight / 1.2f), Color.Black);
         }
     }

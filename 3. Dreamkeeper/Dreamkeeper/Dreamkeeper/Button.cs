@@ -1,15 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Dreamkeeper
 {
-    class Button
+    public class Button
     {
+        #region Variables
         public Texture2D texture { get; internal set; }
         public SpriteFont spriteFont { get; internal set; }
         public string text { get; internal set; }
@@ -20,7 +17,9 @@ namespace Dreamkeeper
         public int positionY { get; internal set; }
         public int width { get; internal set; }
         public int height { get; internal set; }
+        #endregion
 
+        #region Constructors
         public Button(Texture2D txtr, Rectangle rect, Color clr)
         {
             texture = txtr;
@@ -32,7 +31,6 @@ namespace Dreamkeeper
             positionEndX = positionX + width;
             positionEndY = positionY + height;
         }
-
         public Button(SpriteFont sprt, string txt, Color clr, Vector2 vec)
         {
             spriteFont = sprt;
@@ -45,7 +43,9 @@ namespace Dreamkeeper
             positionEndX = positionX + width;
             positionEndY = positionY + height;
         }
+        #endregion
 
+        #region Draw Methods
         public void Draw(SpriteBatch spritebatch)
         {
             if (texture != null)
@@ -53,7 +53,9 @@ namespace Dreamkeeper
             else
                 spritebatch.DrawString(spriteFont, text, new Vector2(positionX, positionY), color);
         }
+        #endregion
 
+        #region Mouse Methods
         public bool IsClicked(MouseState mouseState)
         {
             if (mouseState.LeftButton == ButtonState.Pressed &&
@@ -63,7 +65,6 @@ namespace Dreamkeeper
             else
                 return false;
         }
-
         public bool Hover(MouseState mouseState)
         {
             if ((mouseState.X > positionX) && (mouseState.Y > positionY) &&
@@ -72,5 +73,6 @@ namespace Dreamkeeper
             else
                 return false;
         }
+        #endregion
     }
 }

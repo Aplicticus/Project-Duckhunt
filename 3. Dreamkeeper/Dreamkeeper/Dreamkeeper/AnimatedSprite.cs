@@ -1,22 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Dreamkeeper
 {
     public class AnimatedSprite
     {
-        public Texture2D Texture { get; set; }
-        public int Rows { get; private set; }
-        public int Columns { get; private set; }
-        public int currentFrame;
+        #region Variables
+        internal Texture2D Texture { get; set; }
+        internal int Rows { get; private set; }
+        internal int Columns { get; private set; }
+        internal int currentFrame;
         private int totalFrames;
         private int fps;
         private int fpsc;
+        #endregion
 
+        #region Constructor
         public AnimatedSprite(Texture2D texture, int rows, int columns)
         {
             Texture = texture;
@@ -26,7 +25,9 @@ namespace Dreamkeeper
             totalFrames = Rows * Columns;
             fps = 30 / totalFrames;
         }
+        #endregion
 
+        #region Update
         public void Update()
         {
             fpsc++;
@@ -38,7 +39,9 @@ namespace Dreamkeeper
             if (currentFrame == totalFrames)
                 currentFrame = 0;
         }
+        #endregion
 
+        #region Draw Methods
         public void Draw(SpriteBatch spriteBatch, Vector2 location, float scale)
         {
             int width = Texture.Width / Columns;
@@ -51,5 +54,6 @@ namespace Dreamkeeper
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
         }
+        #endregion
     }
 }
