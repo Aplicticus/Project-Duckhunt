@@ -39,8 +39,8 @@ namespace Dreamkeeper
             this.texture = theContent.Load<Texture2D>((string)AmmonitionProperties()[0]);
             this.hitTexture = theContent.Load<Texture2D>((string)AmmonitionProperties()[0] + "Hit");
             this.damage = (int)AmmonitionProperties()[1];
-            travelAnimation = new AnimatedSprite(this.texture, 1, 4);
-            hitAnimation = new AnimatedSprite(this.hitTexture, 1, 5);
+            travelAnimation = new AnimatedSprite(this.texture, 1, 4, true);
+            hitAnimation = new AnimatedSprite(this.hitTexture, 1, 5, true);
             position = new Vector2(graphics.Viewport.Width / 2 - (travelAnimation.Texture.Width / travelAnimation.Columns / 2) , graphics.Viewport.Height);
             acceleration = 0.3f;
             oldState = Mouse.GetState();

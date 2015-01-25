@@ -16,14 +16,14 @@ namespace Dreamkeeper
         public Texture2D rightTexture { get; protected set; }
         public Texture2D leftTexture { get; protected set; }
         public int health { get; set; }
-        public Vector2 velocity { get; set; }
+        public Vector2 velocity;
 
         public bool dead;
         public Vector2 position;
-        private SpriteFont font;
-        private AnimatedSprite travelingAnimation;
-        private ContentManager theContent;
-        private GraphicsDevice graphics;
+        protected SpriteFont font;
+        protected AnimatedSprite travelingAnimation;
+        protected ContentManager theContent;
+        protected GraphicsDevice graphics;
 
         public Enemy(string name, Texture2D rightTexture, Texture2D leftTexture, Vector2 position, int health, Vector2 velocity, ContentManager theContent, GraphicsDevice graphics)
         {
@@ -32,7 +32,7 @@ namespace Dreamkeeper
             this.leftTexture = leftTexture;
             this.health = health;
             this.velocity = new Vector2(velocity.X / 800 * graphics.Viewport.Width, velocity.Y);
-            travelingAnimation = new AnimatedSprite(this.leftTexture, 3, 6);
+            travelingAnimation = new AnimatedSprite(this.leftTexture, 3, 6, true);
             this.position = new Vector2((new Random().Next(0, 2) == 0) ? -((travelingAnimation.Texture.Width / travelingAnimation.Columns) * ((1f / 800) * graphics.Viewport.Width)) : graphics.Viewport.Width, new Random().Next(0, (int)(graphics.Viewport.Height * 0.4f)));
             this.theContent = theContent;
             this.graphics = graphics;
@@ -40,7 +40,7 @@ namespace Dreamkeeper
             font = theContent.Load<SpriteFont>("MenuFont");
         }
 
-        public void Update(Ammonition ammo)
+        public virtual void Update(Ammonition ammo)
         {
             health -= (IsHit(ref ammo)) ? ammo.damage : 0;
             velocity *= (position.X + (travelingAnimation.Texture.Width / travelingAnimation.Columns) * ((1f / 800) * graphics.Viewport.Width) < 0 || position.X > graphics.Viewport.Width) ? -1 : 1;
@@ -52,7 +52,7 @@ namespace Dreamkeeper
             position += (!dead) ? velocity : Vector2.Zero;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (!dead)
             {

@@ -11,19 +11,19 @@ namespace Dreamkeeper
 {
     public class Level : Screen
     {
-        Difficulty difficulty;
-        Enemy startEnemy;
-        Enemy enemy;
-        ContentManager theContent;
-        Ammonition ammo;
-        Texture2D background;
-        SpriteFont font;
-        private int score;
-        private int targetScore;
-        EventHandler<SwitchEventArgs> theScreenEvent;
-        HUD hud;
-        LevelEndState levelendstate;
-        private int time; // in seconds
+        public Difficulty difficulty;
+        public Enemy startEnemy;
+        public Enemy enemy;
+        public ContentManager theContent;
+        public Ammonition ammo;
+        public Texture2D background;
+        public SpriteFont font;
+        public int score;
+        public int targetScore;
+        public EventHandler<SwitchEventArgs> theScreenEvent;
+        public HUD hud;
+        public LevelEndState levelendstate;
+        public int time; // in seconds
 
         public Level(ContentManager theContent, EventHandler<SwitchEventArgs> theScreenEvent, GraphicsDeviceManager graphics, Texture2D background, Difficulty difficulty, Enemy enemy, int targetScore, int time)
             : base(theScreenEvent, graphics)
@@ -59,9 +59,7 @@ namespace Dreamkeeper
             {
                 enemy = new Enemy(startEnemy.name, startEnemy.rightTexture, startEnemy.leftTexture, startEnemy.position, startEnemy.health, startEnemy.velocity, theContent, graphics.GraphicsDevice);
                 score = score + (enemy.health * 100);
-            }
-
-            
+            }         
 
             if(hud.GetTimeState(time * 120) && score <= targetScore)
             {

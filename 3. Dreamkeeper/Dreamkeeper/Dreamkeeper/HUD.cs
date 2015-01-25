@@ -109,7 +109,7 @@ namespace Dreamkeeper
                 hud.DrawHUD(theBatch);
             }
         }
-        private void DrawHUD(SpriteBatch theBatch)
+        public void DrawHUD(SpriteBatch theBatch)
         {
             if (texture != null)
                 theBatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height), Color.White); // Cast to (int).. Rectangle allows only (Int)          

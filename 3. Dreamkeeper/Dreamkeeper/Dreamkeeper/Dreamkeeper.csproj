@@ -78,12 +78,16 @@
     <Compile Include="AnimatedSprite.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyBoss.cs" />
+    <Compile Include="EnemyJack.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="Intro.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelBoss.cs" />
     <Compile Include="LevelEndState.cs" />
+    <Compile Include="LevelJack.cs" />
     <Compile Include="LevelSelect.cs" />
     <Compile Include="MenuDifficultySelect.cs" />
     <Compile Include="MenuGamemodeSelect.cs" />
