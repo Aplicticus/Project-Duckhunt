@@ -228,10 +228,10 @@ namespace Dreamkeeper
                     currentScreen = menuDifficultySelect;
                     break;
                 case Stateswitch.ARCADE:
-                    // Arcade
+                    // Arcade                 
                     break;
                 case Stateswitch.BOSS:
-                    // Boss
+                    currentScreen = level10;
                     break;
                 case Stateswitch.DIFFICULTY:
                     currentScreen = menuDifficultySelect;

@@ -29,7 +29,23 @@ namespace Dreamkeeper
                 score = score + (enemy.health * 100);
             }
 
-            if (hud.GetTimeState(time * 120) || score >= targetScore)
+            if (hud.GetTimeState(time * 120) && score <= targetScore)
+            {
+                levelendstate.SetResultState(false);
+                Program.game.score += score;
+                score = 0;
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Stateswitch.LEVELENDSTATE));
+            }
+            else if (hud.GetTimeState(time * 120) || score >= targetScore)
+            {
+                Program.game.score += score;
+                score = 0;
+                var method = theScreenEvent;
+                method(this, new SwitchEventArgs((int)Program.game.stateswitch + 1));
+            }
+
+            else if (hud.GetTimeState(time * 120) || score >= targetScore)
             {
                 Program.game.score += score;
                 score = 0;
