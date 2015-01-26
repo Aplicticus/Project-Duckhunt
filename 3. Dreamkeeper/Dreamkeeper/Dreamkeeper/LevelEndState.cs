@@ -68,15 +68,15 @@ namespace Dreamkeeper
             vectors.Add(new Vector2(position.X / 4f, position.Y / 30f)); // Win Image
             vectors.Add(new Vector2(position.X / 4f, position.Y / 30f)); // Lose Image
             vectors.Add(new Vector2(position.X / 1.7f, position.Y / 1.9f)); // Back Button
-            vectors.Add(new Vector2(position.X / 3.5f, position.Y / 1.9f)); // Save Highscore Button
+            vectors.Add(new Vector2(position.X / 4.8f, position.Y / 1.9f)); // Save Highscore Button
             vectors.Add(new Vector2(position.X / 1.5f, position.Y / 2.5f)); // Score Result
             vectors.Add(new Vector2(position.X / 3.5f, position.Y / 2.5f)); // Score Text
 
             // Buttons
             buttons.Add(new Button(textures[0], new Rectangle((int)vectors[0].X, (int)vectors[0].Y, (int)floatsW[0], (int)floatsH[0]), Color.White)); // Win Image
             buttons.Add(new Button(textures[1], new Rectangle((int)vectors[1].X, (int)vectors[1].Y, (int)floatsW[1], (int)floatsH[1]), Color.White)); // Lose Image
-            buttons.Add(new Button(textures[2], new Rectangle((int)vectors[2].X, (int)vectors[2].Y, (int)floatsW[2], (int)floatsH[2]), Color.White)); // Back Button
-            buttons.Add(new Button(textures[3], new Rectangle((int)vectors[3].X, (int)vectors[3].Y, (int)floatsW[3], (int)floatsH[3]), Color.White)); // Save Highscore Button               
+            buttons.Add(new Button(font, "Main Menu", Color.Black, new Vector2((int)vectors[2].X, (int)vectors[2].Y))); // Main Menu Button
+            buttons.Add(new Button(font, "Save Highscore", Color.Black, new Vector2((int)vectors[3].X, (int)vectors[3].Y))); // Save Highscore Button                               
         }
         #endregion
 
